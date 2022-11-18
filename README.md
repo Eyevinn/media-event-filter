@@ -145,7 +145,7 @@ Contributions to improve compatibility with or add support for different engines
 
 ### Git Ways of Working
 
-The project uses feature branches, and a rebase merge strategy.
+The project uses feature branches, and a [rebase merge strategy](https://www.atlassian.com/git/tutorials/merging-vs-rebasing).
 
 Make sure you have `git pull` set to rebase mode:
 
@@ -153,7 +153,7 @@ Make sure you have `git pull` set to rebase mode:
 
 To start working on a new feature: `git checkout <feature branch name>`.
 
-Since the project uses semantic-release to **automatically generate release notes** based on commits, it is important to follow some rules when committing.
+As the project uses semantic-release to **automatically generate release notes** based on commits, it is important to follow some rules when committing.
 
 This project uses [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#summary).
 
@@ -163,7 +163,7 @@ Read [How to Write a Commit Message](https://chris.beams.io/posts/git-commit/).
 
 A commit should:
 
-- contain a single change set
+- contain a single change set (smaller commits are better)
 - pass tests, linting, and typescript checks
 - not be broken
 
