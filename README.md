@@ -65,7 +65,7 @@ Get a single source of truth for playback events regardless of engine (Shaka, Hl
 
 Pipe the events directly into your UI state management for a reliable source of truth of playback state updates.
 
-The event sequence map directly to popular tracking providers without further filtering, like Youbora, Comscore, or Nielsen. _If yours is also supported we welcome PRs to update this list!_
+The event sequence map directly to popular tracking providers and playback SDKs without further filtering, like Youbora, Comscore, Yospace, or Nielsen. _If yours is also supported we welcome PRs to update this list!_
 
 Compatible with [EPAS](https://github.com/Eyevinn/player-analytics-specification).
 
