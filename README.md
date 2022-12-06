@@ -113,6 +113,12 @@ Can not trigger during a seek.
 
 Can not trigger without a preceding buffering event.
 
+### play
+
+Playback has been requested
+
+Cannot trigger before loaded.
+
 ### playing 
 
 Playback has started. 
