@@ -9,6 +9,8 @@ export enum FilteredMediaEvent {
   BUFFERING = "buffering",
   /** Buffering has ended */
   BUFFERED = "buffered",
+  /** A request to start playing again has been made */
+  PLAY = "play",
   /** The stream has started playing after loading completed
    *  OR the stream has started playing after the stream was previously paused */
   PLAYING = "playing",
@@ -226,6 +228,8 @@ export const getVideoEventFilter = ({
       ...state,
       playRequested: true,
     };
+
+    callback(FilteredMediaEvent.PLAY);
   };
 
   const onPlaying = (): void => {
