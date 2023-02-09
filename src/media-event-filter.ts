@@ -149,8 +149,6 @@ export const getVideoEventFilter = ({
     }
   };
 
-  // TODO changing audio track in Shaka causes SEEKING rather than BUFFERING event.
-  //  investigate if this is expected.
   const onSeeking = (): void => {
     // playback should be ready before reacting to "seeking" event (e.g. shaka jumps)
     if (isNotReady()) return;
