@@ -98,7 +98,7 @@ export type TMediaEventFilter = {
   teardown: TCallback;
 };
 
-export const getVideoEventFilter = ({
+export const getMediaEventFilter = ({
   videoElement,
   callback,
 }: TMediaEventFilterOptions): TMediaEventFilter => {
