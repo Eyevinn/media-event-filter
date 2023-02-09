@@ -415,6 +415,15 @@ export const getVideoEventFilter = ({
   const onTimeupdate = (): void => {
     if (isNotReady()) return;
 
+    if (state.buffering) {
+      state = {
+        ...state,
+        buffering: false,
+      }
+
+      callback(FilteredMediaEvent.BUFFERED);
+    }
+
     callback(FilteredMediaEvent.TIME_UPDATE);
   };
 
