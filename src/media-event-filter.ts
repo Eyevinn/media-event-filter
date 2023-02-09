@@ -340,8 +340,8 @@ export const getVideoEventFilter = ({
     !state.seeking &&
     // Not already buffering
     !state.buffering &&
-    // playbackRate is not 0
-    videoElement.playbackRate > 0 &&
+    // playbackRate is 0
+    videoElement.playbackRate === 0 &&
     // videoElement does not indicate it's seeking
     !videoElement.seeking
 
@@ -415,7 +415,7 @@ export const getVideoEventFilter = ({
   const onTimeupdate = (): void => {
     if (isNotReady()) return;
 
-    if (state.buffering) {
+    if (state.buffering && !videoElement.paused) {
       state = {
         ...state,
         buffering: false,
