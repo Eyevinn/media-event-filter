@@ -407,6 +407,8 @@ export const getVideoEventFilter = ({
       paused: true,
     };
 
+    clearRatechangeBufferTimeout();
+
     callback(FilteredMediaEvent.ENDED);
   };
 
