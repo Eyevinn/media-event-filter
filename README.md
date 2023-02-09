@@ -209,4 +209,6 @@ Tested on OSX, Windows, Linux
 
 ### Releasing
 
-`// TODO add release scripts`
+Releases are triggered via a github action that will automatically increment the version and write a changelog based on commits.
+
+Manual releases can be made by running `yarn release`.
