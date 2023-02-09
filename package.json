@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "HTML5 media event filter",
   "main": "build/media-event-filter.js",
-  "typings": "build/media-event-filter.d.ts",
+  "typings": "build/types/media-event-filter.d.ts",
   "repository": "git@github.com:Eyevinn/media-event-filter.git",
   "author": "Martin <901824+martinstark@users.noreply.github.com>",
   "license": "MIT",
