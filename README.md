@@ -193,9 +193,8 @@ For automated release notes to work well, try to describe what was added or chan
 
 ### Develop
 
-Familiarity with the HTML5 video standard and shaka is recommended before
-editing this file. An accidental error will put the player in a bad state,
-resulting in unexpected event sequences.
+Familiarity with the HTML5 video standard, shaka, hlsjs, or other engines
+is recommended before contributing.
 
 https://www.w3.org/TR/2011/WD-html5-20110113/video.html
 https://html.spec.whatwg.org/multipage/media.html
@@ -204,7 +203,7 @@ https://html.spec.whatwg.org/multipage/media.html#mediaevents
 Tested with shaka 2.5.X - 4.X.X
 Tested with native video in Safari
 Tested with hls.js
-Tested on Safari, Firefox, Chrome
+Tested on Safari 13.1+, Firefox, Chrome, Edge
 Tested on OSX, Windows, Linux
 
 ### Releasing
