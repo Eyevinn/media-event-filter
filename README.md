@@ -211,7 +211,7 @@ Basic structure of a commit message:
 
 For automated release notes to work well, try to describe what was added or changed, instead of describing what the code does. Example:
 
-`fix(seek): prevent infinite loop in seek module` `// bad, the consumer does not know what issue this fixes`
+`fix(seek): rewrite calculation in seek module` `// bad, the consumer does not know what issue this fixes`
 
 `fix(seek): stop player from freezing after seek` `// good, the consumer understands what is now working again`
 
