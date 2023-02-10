@@ -73,6 +73,26 @@ Compatible with [EPAS](https://github.com/Eyevinn/player-analytics-specification
 
 A description of events and their sequencing.
 
+### Example Sequences
+
+```typescript
+LOADED    // playback is ready to start
+PLAYING   // playback started
+SEEKING   // seek requested
+PAUSED    // manual pause
+PLAY      // manual play
+SEEKED    // seek finished
+PLAYING   // video is rolling again
+BUFFERING // unable to continue playing due to missing buffer
+BUFFERED  // buffer ended by incoming seek request
+SEEKING   // seek requested
+SEEKED    // seek finished
+PAUSED    // manual pause
+PLAY      // manual play
+PLAYING   // video is rolling again
+ENDED     // video reached the end
+```
+
 ### loaded 
 
 The initial load of the video has completed, and it is ready to start playing.
