@@ -221,13 +221,19 @@ Familiarity with the HTML5 video standard, shaka, hlsjs, or other engines
 is recommended before contributing.
 
 https://www.w3.org/TR/2011/WD-html5-20110113/video.html
+
 https://html.spec.whatwg.org/multipage/media.html
+
 https://html.spec.whatwg.org/multipage/media.html#mediaevents
 
 Tested with shaka 2.5.X - 4.X.X
+
 Tested with native video in Safari
+
 Tested with hls.js
+
 Tested on Safari 13.1+, Firefox, Chrome, Edge
+
 Tested on OSX, Windows, Linux
 
 ### Releasing
