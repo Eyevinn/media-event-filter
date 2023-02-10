@@ -135,13 +135,15 @@ Can not trigger without a preceding buffering event.
 
 ### play
 
-Playback has been requested
+Playback has been requested.
 
-Cannot trigger before loaded.
+Can not trigger before loaded.
+
+Can not trigger if video was not previously paused.
 
 ### playing 
 
-Playback has started. 
+Playback has started.
 
 Can not trigger before loaded.
 
@@ -149,7 +151,9 @@ Can not trigger during seeking.
 
 Can not trigger during buffering.
 
-A play requested during seeking or buffering will trigger after.
+Can not trigger if video was not previously paused.
+
+A play requested during seeking or buffering will trigger playing after the seek or buffer has finished.
 
 ### pause 
 
