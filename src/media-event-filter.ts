@@ -106,9 +106,9 @@ export const getMediaEventFilter = ({
 
   const clearRatechangeBufferTimeout = () => {
     if (typeof ratechangeBufferTimeout === "number") {
-      clearTimeout(ratechangeBufferTimeout)
+      clearTimeout(ratechangeBufferTimeout);
     }
-  }
+  };
 
   let state: TPlaybackState = {
     ...initialState,
@@ -297,7 +297,7 @@ export const getMediaEventFilter = ({
       ...state,
       // always reset play requests
       playRequested: false,
-    }
+    };
 
     if (state.paused) return;
     // // potential logic to only propagate "real" pauses. Prevents pause events that are triggered
@@ -319,7 +319,7 @@ export const getMediaEventFilter = ({
         state = {
           ...state,
           paused: true,
-        }
+        };
 
         callback(FilteredMediaEvent.PAUSE);
       }
@@ -341,7 +341,7 @@ export const getMediaEventFilter = ({
     // playbackRate is 0
     videoElement.playbackRate === 0 &&
     // videoElement does not indicate it's seeking
-    !videoElement.seeking
+    !videoElement.seeking;
 
   const onRatechange = (): void => {
     clearRatechangeBufferTimeout();
@@ -417,7 +417,7 @@ export const getMediaEventFilter = ({
       state = {
         ...state,
         buffering: false,
-      }
+      };
 
       callback(FilteredMediaEvent.BUFFERED);
     }
@@ -449,6 +449,6 @@ export const getMediaEventFilter = ({
       EventHandlerPairs.forEach(([event, handler]) =>
         videoElement.removeEventListener(event, handler)
       );
-    }
-  }
+    },
+  };
 };
