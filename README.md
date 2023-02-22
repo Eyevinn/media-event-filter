@@ -179,7 +179,9 @@ The project uses feature branches, and a [rebase merge strategy](https://www.atl
 
 Make sure you have `git pull` set to rebase mode:
 
-`git config --global pull.rebase true`
+`git config pull.rebase true`
+
+Optionally, you can add the `--global` flag to the above command.
 
 To start working on a new feature: `git checkout <feature branch name>`.
 
