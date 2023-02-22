@@ -5,7 +5,6 @@ const common = require("./webpack.common");
 
 module.exports = merge(common, {
   mode: "production",
-  entry: ["./src/media-event-filter.ts"],
   output: {
     path: path.resolve(__dirname, "build"),
     filename: `mef.min.js`,

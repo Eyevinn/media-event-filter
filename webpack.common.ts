@@ -1,4 +1,5 @@
 module.exports = {
+  entry: ["./src/media-event-filter"],
   output: {
     library: {
       type: "commonjs2",
