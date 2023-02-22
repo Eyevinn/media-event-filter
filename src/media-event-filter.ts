@@ -220,6 +220,9 @@ export const getMediaEventFilter = ({
   const onPlay = (): void => {
     if (isNotReady()) return;
 
+    // block mse plays triggered after buffering and seeks
+    if (!state.paused || !state.initialPlayFired) return;
+
     // enable triggering deferred playing event when toggling play-pause
     // during seeking or buffering
     state = {
@@ -300,9 +303,8 @@ export const getMediaEventFilter = ({
     };
 
     if (state.paused) return;
-    // // potential logic to only propagate "real" pauses. Prevents pause events that are triggered
-    // // by an engine due to seeking (might be an issue in Safari).
-    // if (videoElement.readyState !== 4) return
+    // Propagate "real" pauses. Prevents pause events that are triggered by native MSE seek.
+    if (videoElement.readyState !== 4) return;
 
     // Safari autoplay block triggers with a deferred loaded event,
     // recover to a paused state
