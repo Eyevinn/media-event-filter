@@ -14,5 +14,5 @@
     "rootDir": "src",
     "outDir": "build/types"
   },
-  "exclude": ["**/dist/", "**/node_modules/", "**/webpack.*"]
+  "exclude": ["**/build/", "**/node_modules/", "**/webpack.*"]
 }

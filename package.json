@@ -2,26 +2,34 @@
   "name": "media-event-filter",
   "version": "0.0.0",
   "description": "HTML5 media event filter",
-  "main": "build/media-event-filter.js",
+  "main": "build/med.min.js",
   "typings": "build/types/media-event-filter.d.ts",
   "repository": "git@github.com:Eyevinn/media-event-filter.git",
   "author": "Martin <901824+martinstark@users.noreply.github.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "snowpack dev",
-    "build": "snowpack build && tsc -p tsconfig.json --emitDeclarationOnly",
-    "pretty": "prettier .",
+    "dev": "webpack --config webpack.dev.ts -w",
+    "build": "webpack --config webpack.prod.ts && tsc -p tsconfig.json --emitDeclarationOnly",
+    "pretty": "prettier --write .",
     "release": "semantic-release",
     "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@semantic-release/changelog": "6.0.2",
     "@semantic-release/git": "10.0.1",
-    "@snowpack/plugin-typescript": "^1.2.1",
+    "@snowpack/plugin-typescript": "1.2.1",
+    "@swc/core": "1.3.36",
+    "@types/node": "18.14.0",
+    "@types/webpack": "5.28.0",
     "prettier": "2.8.4",
     "semantic-release": "20.1.0",
-    "snowpack": "3.8.8",
-    "typescript": "4.9.5"
+    "swc-loader": "0.2.3",
+    "ts-node": "10.9.1",
+    "typescript": "4.9.5",
+    "webpack": "5.75.0",
+    "webpack-bundle-analyzer": "4.8.0",
+    "webpack-cli": "5.0.1",
+    "webpack-merge": "5.8.0"
   }
 }
