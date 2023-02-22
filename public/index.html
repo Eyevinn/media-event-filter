@@ -47,12 +47,24 @@
   </div>
 
   <script type="module">
-    import { getMediaEventFilter, FilteredMediaEvent } from "./main.mjs";
+    import {
+      getMediaEventFilter,
+      FilteredMediaEvent,
+      MediaEvent,
+    } from "./main.mjs";
 
-    const mediaEventFilter = getMediaEventFilter({
-      videoElement: document.getElementById("videoEl"),
+    const videoElement = document.getElementById("videoEl");
+
+    Object.values(MediaEvent).forEach((evt) =>
+      videoElement.addEventListener(evt, () => {
+        console.log("%cNativeEv: %s", "color:#cf1313;font-weight:bold;", evt);
+      })
+    );
+
+    getMediaEventFilter({
+      videoElement,
       callback: (evt) => {
-        console.log(evt);
+        console.log("%cFiltered: %s", "color:#267dff;font-weight:bold;", evt);
 
         if (evt === FilteredMediaEvent.TIME_UPDATE) return;
 
