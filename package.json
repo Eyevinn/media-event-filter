@@ -11,7 +11,7 @@
   "private": false,
   "scripts": {
     "analyze": "webpack --config webpack.analyze.mts",
-    "dev": "webpack serve --config webpack.dev.mts",
+    "dev": "webpack serve --config webpack.dev.mts --open",
     "build": "webpack --config webpack.prod.mts && tsc -p tsconfig.json --emitDeclarationOnly",
     "pretty": "prettier --write .",
     "release": "semantic-release",
