@@ -234,8 +234,6 @@ For automated release notes to work well, try to describe what was added or chan
 
 ### Develop
 
-
-
 Familiarity with the HTML5 video standard, shaka, hlsjs, or other engines
 is recommended before contributing.
 
