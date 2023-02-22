@@ -7,7 +7,7 @@ module.exports = merge(common, {
   entry: ["./src/media-event-filter.ts"],
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(__dirname, "public"),
     },
     compress: true,
     port: 9000,
