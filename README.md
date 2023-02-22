@@ -54,6 +54,9 @@ const mediaEventFilter = getMediaEventFilter({
     }
   },
 });
+
+// Call when done
+mediaEventFilter.teardown();
 ```
 
 ```typescript
