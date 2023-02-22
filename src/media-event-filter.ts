@@ -32,7 +32,7 @@ type TMediaEventFilterOptions = {
 type TCallback = () => void;
 
 // https://html.spec.whatwg.org/multipage/media.html#mediaevents
-enum MediaEvent {
+export enum MediaEvent {
   loadstart = "loadstart",
   progress = "progress",
   suspend = "suspend",
