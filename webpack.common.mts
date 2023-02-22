@@ -1,8 +1,11 @@
 module.exports = {
   entry: ["./src/media-event-filter"],
+  experiments: {
+    outputModule: true,
+  },
   output: {
     library: {
-      type: "commonjs2",
+      type: "module",
     },
   },
   resolve: {
@@ -11,11 +14,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|js)x?$/,
+        test: /\.m?ts$/,
         exclude: [/node_modules/],
         use: ["swc-loader"],
       },
-    ]
+    ],
   },
   devtool: "source-map",
   plugins: [],

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    html {
+      font-size: 67.5%;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    #videoEl {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .wrapper {
+      width: 100%;
+      padding: 10px;
+    }
+
+    .box {
+      margin: 0 0 20px 0;
+    }
+
+    .event {
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+
+    #events {
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="box">
+      <video
+        controls
+        src="https://testcontent.eyevinn.technology/mp4/VINN.mp4"
+        id="videoEl"
+      ></video>
+    </div>
+    <div class="box">
+      <div id="events"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { getMediaEventFilter, FilteredMediaEvent } from "./build/mef.min.js";
+
+    const mediaEventFilter = getMediaEventFilter({
+      videoElement: document.getElementById("videoEl"),
+      callback: (evt) => {
+        console.log(evt);
+
+        if (evt === FilteredMediaEvent.TIME_UPDATE) return;
+
+        const box = document.createElement("div");
+
+        box.classList.add("event");
+        box.innerText = evt;
+
+        const events = document.getElementById("events");
+
+        events.prepend(box);
+
+        if (events.childElementCount > 10) {
+          events.removeChild(events.lastChild);
+        }
+      },
+    });
+  </script>
+</body>
