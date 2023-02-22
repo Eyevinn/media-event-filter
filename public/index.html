@@ -3,6 +3,18 @@
   <style>
     html {
       font-size: 67.5%;
+      padding: 0;
+      margin: 0;
+      border: 0.5rem solid rgba(255, 198, 109, 1);
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1rem;
+      font-family: monospace, serif;
     }
 
     * {
@@ -11,21 +23,25 @@
 
     #videoEl {
       width: 100%;
-      max-width: 720px;
+      max-width: 72rem;
     }
 
     .wrapper {
       width: 100%;
-      padding: 10px;
     }
 
     .box {
-      margin: 0 0 20px 0;
+      margin: 0 0 1rem 0;
     }
 
     .event {
-      font-size: 1.6rem;
-      line-height: 1.2;
+      color: #1a1a1a;
+      padding: 0.2rem 1rem;
+      margin-bottom: 0.2rem;
+      border-radius: 0.2rem;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      background: rgba(255, 198, 109, 1);
     }
 
     #events {
@@ -41,6 +57,7 @@
         id="videoEl"
       ></video>
     </div>
+    <p>Check console for additional logging.</p>
     <div class="box">
       <div id="events"></div>
     </div>
@@ -54,6 +71,7 @@
     } from "./main.mjs";
 
     const videoElement = document.getElementById("videoEl");
+    let i = 1;
 
     Object.values(MediaEvent).forEach((evt) =>
       videoElement.addEventListener(evt, () => {
@@ -71,7 +89,8 @@
         const box = document.createElement("div");
 
         box.classList.add("event");
-        box.innerText = evt;
+        box.innerText = i + ": " + evt;
+        i++;
 
         const events = document.getElementById("events");
 
