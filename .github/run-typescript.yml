@@ -22,7 +22,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '19.x'
+          node-version: '18.x'
           registry-url: 'https://npm.pkg.github.com/'
       - name: Install Dependencies
         run: yarn install --immutable
