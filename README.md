@@ -14,7 +14,7 @@ Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevi
 
 ## Limitations
 
-Does not support native HTML5 MSE controls (`<video controls>`). It works, but event sequence will strictly follow EPAS in all browsers.
+Does not support native HTML5 MSE controls (`<video controls>`). It works, but event sequence will not strictly follow EPAS in all browsers.
 
 Does not support re-using the same video element.
 
