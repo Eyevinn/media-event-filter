@@ -70,7 +70,7 @@ const handlers = {
 
 const mediaEventFilter = getMediaEventFilter({
   videoElement,
-  callback: (event: FilteredMediaEvent) => handlers[event](),
+  callback: (event: FilteredMediaEvent) => handlers[event]?.(),
 });
 ```
 
