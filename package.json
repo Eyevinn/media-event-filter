@@ -1,6 +1,7 @@
 {
   "name": "media-event-filter",
   "version": "0.0.0",
+  "type": "module",
   "description": "HTML5 media event filter",
   "main": "build/med.min.js",
   "typings": "build/types/media-event-filter.d.ts",
@@ -10,7 +11,7 @@
   "private": false,
   "scripts": {
     "dev": "webpack --config webpack.dev.ts -w",
-    "build": "webpack --config webpack.prod.ts && tsc -p tsconfig.json --emitDeclarationOnly",
+    "build": "webpack --config webpack.prod.mts && tsc -p tsconfig.json --emitDeclarationOnly",
     "pretty": "prettier --write .",
     "release": "semantic-release",
     "prepublishOnly": "yarn build"

@@ -1,7 +1,7 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 const { merge } = require("webpack-merge");
-const common = require("./webpack.common");
+const common = require("./webpack.common.mts");
 
 module.exports = merge(common, {
   mode: "production",
@@ -15,6 +15,6 @@ module.exports = merge(common, {
         minify: TerserPlugin.swcMinify,
         terserOptions: {},
       }),
-      ],
+    ],
   },
 });
