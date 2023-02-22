@@ -16,6 +16,10 @@ Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevi
 
 Does not support native HTML5 MSE controls (`<video controls>`). It works, but event sequence will strictly follow EPAS in all browsers.
 
+Does not support re-using the same video element.
+
+Does not support restarting the video after end of stream has been reached.
+
 ## Usage
 
 `// TODO add npm/yarn installation instructions`
