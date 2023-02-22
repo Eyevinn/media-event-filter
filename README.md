@@ -12,6 +12,10 @@ This filter aims to provide a single source of truth that can be used across pla
 
 Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevinn/player-analytics-specification).
 
+## Limitations
+
+Does not support native HTML5 MSE controls (`<video controls>`). It works, but event sequence will strictly follow EPAS in all browsers.
+
 ## Usage
 
 `// TODO add npm/yarn installation instructions`
