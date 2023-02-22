@@ -1,5 +1,6 @@
 # Media Event Filter
-A small package for producing a sane default interpretation of commonly used playback events from a [HTMLVideoElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement). 
+
+A small package for producing a sane default interpretation of commonly used playback events from a [HTMLVideoElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement).
 
 ## Why
 
@@ -13,12 +14,15 @@ Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevi
 
 ## Usage
 
-`// TODO add npm/yarn installation instructions` 
+`// TODO add npm/yarn installation instructions`
 
 Example of creating and listening to the event filter.
 
 ```typescript
-import { getMediaEventFilter, FilteredMediaEvent } from "@eyevinn/media-event-filter";
+import {
+  getMediaEventFilter,
+  FilteredMediaEvent,
+} from "@eyevinn/media-event-filter";
 
 const videoElement = document.createElement("video");
 
@@ -27,31 +31,38 @@ const videoElement = document.createElement("video");
 const mediaEventFilter = getMediaEventFilter({
   videoElement,
   callback: (event: FilteredMediaEvent) => {
-      switch (event) {
-        case FilteredMediaEvent.LOADED:
-          // handle loaded
-          break;
-        case FilteredMediaEvent.BUFFERING:
-          // handle buffering
-          break;
-        case FilteredMediaEvent.BUFFERED:
-          // handle buffered
-        // ...
-        default:
-          break;
-      }
-    },
+    switch (event) {
+      case FilteredMediaEvent.LOADED:
+        // handle loaded
+        break;
+      case FilteredMediaEvent.BUFFERING:
+        // handle buffering
+        break;
+      case FilteredMediaEvent.BUFFERED:
+      // handle buffered
+      // ...
+      default:
+        break;
+    }
+  },
 });
 ```
+
 ```typescript
 // Object notation can also be used
 
 const handlers = {
-  [FilteredMediaEvent.LOADED]: () => { /* handle loaded */ },
-  [FilteredMediaEvent.BUFFERING]: () => { /* handle buffering */ },
-  [FilteredMediaEvent.BUFFERED]: () => { /* handle buffered */ },
+  [FilteredMediaEvent.LOADED]: () => {
+    /* handle loaded */
+  },
+  [FilteredMediaEvent.BUFFERING]: () => {
+    /* handle buffering */
+  },
+  [FilteredMediaEvent.BUFFERED]: () => {
+    /* handle buffered */
+  },
   // ...
-}
+};
 
 const mediaEventFilter = getMediaEventFilter({
   videoElement,
@@ -76,30 +87,30 @@ A description of events and their sequencing.
 ### Example Sequences
 
 ```typescript
-LOADED    // playback is ready to start
-PLAYING   // playback started
-SEEKING   // seek requested
-PAUSED    // manual pause
-PLAY      // manual play
-SEEKED    // seek finished
-PLAYING   // video is rolling again
-BUFFERING // unable to continue playing due to missing buffer
-BUFFERED  // buffer ended by incoming seek request
-SEEKING   // seek requested
-SEEKED    // seek finished
-PAUSED    // manual pause
-PLAY      // manual play
-PLAYING   // video is rolling again
-ENDED     // video reached the end
+LOADED; // playback is ready to start
+PLAYING; // playback started
+SEEKING; // seek requested
+PAUSED; // manual pause
+PLAY; // manual play
+SEEKED; // seek finished
+PLAYING; // video is rolling again
+BUFFERING; // unable to continue playing due to missing buffer
+BUFFERED; // buffer ended by incoming seek request
+SEEKING; // seek requested
+SEEKED; // seek finished
+PAUSED; // manual pause
+PLAY; // manual play
+PLAYING; // video is rolling again
+ENDED; // video reached the end
 ```
 
-### loaded 
+### loaded
 
 The initial load of the video has completed, and it is ready to start playing.
 
 No other event can trigger before loaded.
 
-### seeking 
+### seeking
 
 Seeking has started.
 
@@ -109,7 +120,7 @@ Buffer events can not trigger during a seek.
 
 Can not trigger before loaded.
 
-### seeked 
+### seeked
 
 Seeking has ended.
 
@@ -117,7 +128,7 @@ Can not trigger before loaded.
 
 Can not trigger without a preceding seeking event.
 
-### buffering 
+### buffering
 
 Buffering has started.
 
@@ -125,7 +136,7 @@ Can not trigger during a seek.
 
 Can not trigger before loaded.
 
-### buffered 
+### buffered
 
 Buffering has ended, or was interrupted by a seek.
 
@@ -141,7 +152,7 @@ Can not trigger before loaded.
 
 Can not trigger if video was not previously paused.
 
-### playing 
+### playing
 
 Playback has started.
 
@@ -155,7 +166,7 @@ Can not trigger if video was not previously paused.
 
 A play requested during seeking or buffering will trigger playing after the seek or buffer has finished.
 
-### pause 
+### pause
 
 Playback has been paused.
 
