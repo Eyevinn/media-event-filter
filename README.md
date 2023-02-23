@@ -22,7 +22,9 @@ Does not support restarting the video after end of stream has been reached.
 
 ## Usage
 
-`// TODO add npm/yarn installation instructions`
+`npm install @eyevinn/media-event-filter`
+
+`yarn add @eyevinn/media-event-filter`
 
 Example of creating and listening to the event filter.
 
