@@ -8,7 +8,6 @@
   "repository": "git@github.com:Eyevinn/media-event-filter.git",
   "author": "Martin <901824+martinstark@users.noreply.github.com>",
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
@@ -37,5 +36,6 @@
     "webpack-cli": "5.0.1",
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "5.8.0"
-  }
+  },
+  "packageManager": "yarn@3.4.1"
 }
