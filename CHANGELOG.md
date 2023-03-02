@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Eyevinn/media-event-filter/compare/v1.0.1...v1.0.2) (2023-03-02)
+
+
+### Bug Fixes
+
+* allow pausing after every play request ([ddbbb44](https://github.com/Eyevinn/media-event-filter/commit/ddbbb44b02cd6322426e5e2ffaa44d4d4847f800))
+
 ## [1.0.1](https://github.com/Eyevinn/media-event-filter/compare/v1.0.0...v1.0.1) (2023-03-02)
 
 

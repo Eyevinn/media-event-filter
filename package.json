@@ -1,6 +1,6 @@
 {
   "name": "@eyevinn/media-event-filter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "HTML5 media event filter",
   "main": "build/mef.min.js",
