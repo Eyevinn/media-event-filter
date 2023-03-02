@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Eyevinn/media-event-filter/compare/v1.0.0...v1.0.1) (2023-03-02)
+
+
+### Bug Fixes
+
+* propagate pauses during seek and buffers ([516780a](https://github.com/Eyevinn/media-event-filter/commit/516780a125fc70f6cec4a5a4205aa850f89313cc))
+
 # 1.0.0 (2023-03-02)
 
 
