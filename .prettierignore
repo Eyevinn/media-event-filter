@@ -1,0 +1,7 @@
+**/dist*
+**/build*
+node_modules
+.yarn
+.github
+
+CHANGELOG.md
