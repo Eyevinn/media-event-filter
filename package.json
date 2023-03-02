@@ -37,5 +37,8 @@
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "5.8.0"
   },
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.4.1",
+  "dependencies": {
+    "terser-webpack-plugin": "^5.3.6"
+  }
 }
