@@ -303,8 +303,6 @@ export const getMediaEventFilter = ({
     };
 
     if (state.paused) return;
-    // Propagate "real" pauses. Prevents pause events that are triggered by native MSE seek.
-    if (videoElement.readyState !== 4) return;
 
     // Safari autoplay block triggers with a deferred loaded event,
     // recover to a paused state
