@@ -296,13 +296,14 @@ export const getMediaEventFilter = ({
   };
 
   const onPause = (): void => {
+    // Allow pausing while already paused if a play was requested
+    if (!state.playRequested && state.paused) return;
+
     state = {
       ...state,
       // always reset play requests
       playRequested: false,
     };
-
-    if (state.paused) return;
 
     // Safari autoplay block triggers with a deferred loaded event,
     // recover to a paused state
@@ -328,9 +329,9 @@ export const getMediaEventFilter = ({
         ...state,
         paused: true,
       };
-    }
 
-    callback(FilteredMediaEvent.PAUSE);
+      callback(FilteredMediaEvent.PAUSE);
+    }
   };
 
   const shouldTriggerRatechangeBuffer = () =>
@@ -353,15 +354,17 @@ export const getMediaEventFilter = ({
       onCanPlayThrough();
     }
 
+    // The engine kept buffering after "seeked" event, recover.
+    // Trigger before deferred playing check, since playing can
+    // be converted to seeked.
+    if (state.deferSeekedEvent && playbackRateIsPositive) {
+      onSeeked();
+    }
+
     // the engine kept buffering after "playing" event, recover
     if (state.deferPlayingEvent && playbackRateIsPositive) {
       // onPlaying handles if a pause arrived after the playing event was deferred
       onPlaying();
-    }
-
-    // the engine kept buffering after "seeked" event, recover
-    if (state.deferSeekedEvent && playbackRateIsPositive) {
-      onSeeked();
     }
 
     if (isNotReady()) return;
