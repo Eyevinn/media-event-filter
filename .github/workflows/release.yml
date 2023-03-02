@@ -21,9 +21,9 @@ jobs:
           node-version: "18.x"
       # Install stuff
       - name: Set up yarn scope
-        run: yarn config set npmAuthToken $NPM_GITHUB_TOKEN
+        run: yarn config set npmAuthToken $NPM_TOKEN
         env:
-          NPM_GITHUB_TOKEN: ${{ secrets.NPM_GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Install Dependencies
         run: yarn install --immutable
       # Do releases
@@ -34,4 +34,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
