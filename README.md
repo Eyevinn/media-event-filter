@@ -86,7 +86,9 @@ const mediaEventFilter = getMediaEventFilter({
 ```typescript
 // It is safe to use destructuring
 
-const { teardown } = getMediaEventFilter({ /* ... */ });
+const { teardown } = getMediaEventFilter({
+  /* ... */
+});
 
 teardown();
 ```
