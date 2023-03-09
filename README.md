@@ -83,6 +83,14 @@ const mediaEventFilter = getMediaEventFilter({
 });
 ```
 
+```typescript
+// It is safe to use destructuring
+
+const { teardown } = getMediaEventFilter({ /* ... */ });
+
+teardown();
+```
+
 ## Benefits
 
 Get a single source of truth for playback events regardless of engine (Shaka, Hls.js, DashJS, native) or browser (Chrome, Firefox, Safari).
