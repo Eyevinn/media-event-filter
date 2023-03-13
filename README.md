@@ -4,7 +4,7 @@ A small package for producing a sane default interpretation of commonly used pla
 
 ## Why
 
-The HTML5 video element does not produce a consistent set of events that correspond to the updates required by trackers and user interfaces, like `loading`, `buffering` or `seeking`.
+The HTML5 video element does not produce a consistent set of events that correspond to the updates required by trackers and user interfaces, like `loaded`, `buffering` or `seeking`.
 
 Different player engines built on top of the Media Source Extension all have their own implementations for listening to events.
 
