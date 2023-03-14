@@ -111,6 +111,7 @@ const PlayerComponent = ({ videoUrl }) => {
   const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [blocked, setBlocked] = useState(false);
 
   useEffect(() => {
     if (!videoUrl || !videoRef.current) return () => {};
@@ -122,9 +123,19 @@ const PlayerComponent = ({ videoUrl }) => {
         switch (event) {
           case FilteredMediaEvent.LOADED:
             setLoading(false);
-            videoRef.current.play();
+
+            // attempt autoplay
+            videoRef.current.play().catch((e) => {
+              // catch autoplay block
+              if (e.name.indexOf("NotAllowedError") > -1) {
+                setBlocked(true);
+              }
+            });
             break;
           case FilteredMediaEvent.PLAYING:
+            // reset autplay blocked
+            setBlocked(false);
+            // we're playing!
             setPlaying(true);
             break;
           case FilteredMediaEvent.ENDED:
@@ -169,8 +180,6 @@ const PlayerComponent = ({ videoUrl }) => {
 
   return (
     <div style={{ width: "720px", margin: "20px auto" }}>
-      <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
-
       {loading && <p>Video is Loading</p>}
 
       {!loading &&
@@ -183,6 +192,10 @@ const PlayerComponent = ({ videoUrl }) => {
             Play
           </button>
         ))}
+
+      {blocked && <p>Autoplay blocked, please start playback manually</p>}
+
+      <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
     </div>
   );
 };
