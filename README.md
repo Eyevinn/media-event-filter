@@ -97,7 +97,7 @@ teardown();
 
 The filter can be used to easily build a React UI on top of Shaka. 
 
-A barebones sample integration:
+A barebones sample integration (see it on (codepen)[https://codepen.io/atlimar/pen/wvEmpXM?editors=1010]):
 
 ```javascript
 import { useCallback, useEffect, useMemo, useRef, useState } from "React";
@@ -190,7 +190,7 @@ const PlayerComponent = ({ videoUrl }) => {
 
 ```javascript
 // Use it:
-<PlayerComponent videoUrl="https://f53accc45b7aded64ed8085068f31881.egress.mediapackage-vod.eu-north-1.amazonaws.com/out/v1/6dfccb0406c74fa3ac21d262db7384b1/64651f16da554640930b7ce2cd9f758b/66d211307b7d43d3bd515a3bfb654e1c/manifest.mpd" />
+<PlayerComponent videoUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd" />
 ```
 
 ## Benefits
