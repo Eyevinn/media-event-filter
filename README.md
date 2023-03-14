@@ -93,6 +93,111 @@ const { teardown } = getMediaEventFilter({
 teardown();
 ```
 
+### Sample Shaka + React Component
+
+The filter can be used to easily build a React UI on top of Shaka. 
+
+A barebones sample integration:
+
+```javascript
+import { useCallback, useEffect, useMemo, useRef, useState } from "React";
+import shaka from "shaka-player";
+import {
+  FilteredMediaEvent,
+  getMediaEventFilter,
+} from "@eyevinn/media-event-filter";
+
+const PlayerComponent = ({ videoUrl }) => {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!videoUrl || !videoRef.current) return () => {};
+
+    const eventFilter = getMediaEventFilter({
+      videoElement: videoRef.current,
+      // add your state handlers here
+      callback: (event) => {
+        switch (event) {
+          case FilteredMediaEvent.LOADED:
+            setLoading(false);
+            break;
+          case FilteredMediaEvent.PLAYING:
+            setPlaying(true);
+            break;
+          case FilteredMediaEvent.ENDED:
+          case FilteredMediaEvent.PAUSE:
+            setPlaying(false);
+            break;
+          default:
+            break;
+        }
+      },
+    });
+
+    const player = new shaka.Player(videoRef.current);
+
+    // Add configuration if needed
+    // player.configure()
+
+    player
+      // start loading the stream
+      .load(videoUrl)
+      // play when stream is loaded
+      .then(() => {
+        if (!videoRef.current) return;
+
+        videoRef.current.play();
+      })
+      // catch errors during load
+      .catch(console.error);
+
+    // Kill player when unmounted
+    return () => {
+      player.destroy();
+      eventFilter.teardown();
+    };
+  }, [videoUrl, videoRef]);
+
+  const play = useCallback(() => {
+    if (!videoRef.current) return;
+
+    videoRef.current.play();
+  }, [videoRef]);
+
+  const pause = useCallback(() => {
+    if (!videoRef.current) return;
+
+    videoRef.current.pause();
+  }, [videoRef]);
+
+  return (
+    <div style={{ width: "720px", margin: "20px auto" }}>
+      <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
+
+      {loading && <p>Video is Loading</p>}
+
+      {!loading &&
+        (playing ? (
+          <button type="button" onClick={pause}>
+            Pause
+          </button>
+        ) : (
+          <button type="button" onClick={play}>
+            Play
+          </button>
+        ))}
+    </div>
+  );
+};
+```
+
+```javascript
+// Use it:
+<PlayerComponent videoUrl="https://f53accc45b7aded64ed8085068f31881.egress.mediapackage-vod.eu-north-1.amazonaws.com/out/v1/6dfccb0406c74fa3ac21d262db7384b1/64651f16da554640930b7ce2cd9f758b/66d211307b7d43d3bd515a3bfb654e1c/manifest.mpd" />
+```
+
 ## Benefits
 
 Get a single source of truth for playback events regardless of engine (Shaka, Hls.js, DashJS, native) or browser (Chrome, Firefox, Safari).
