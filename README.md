@@ -97,7 +97,7 @@ teardown();
 
 The filter can be used to easily build a React UI on top of Shaka. 
 
-A barebones sample integration (see it on (codepen)[https://codepen.io/atlimar/pen/wvEmpXM?editors=1010]):
+A barebones sample integration (see it on [codepen](https://codepen.io/atlimar/pen/wvEmpXM?editors=1010)):
 
 ```javascript
 import { useCallback, useEffect, useMemo, useRef, useState } from "React";
