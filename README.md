@@ -122,6 +122,7 @@ const PlayerComponent = ({ videoUrl }) => {
         switch (event) {
           case FilteredMediaEvent.LOADED:
             setLoading(false);
+            videoRef.current.play();
             break;
           case FilteredMediaEvent.PLAYING:
             setPlaying(true);
@@ -144,12 +145,6 @@ const PlayerComponent = ({ videoUrl }) => {
     player
       // start loading the stream
       .load(videoUrl)
-      // play when stream is loaded
-      .then(() => {
-        if (!videoRef.current) return;
-
-        videoRef.current.play();
-      })
       // catch errors during load
       .catch(console.error);
 
