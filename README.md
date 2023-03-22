@@ -8,7 +8,7 @@ The HTML5 video element does not produce a consistent set of events that corresp
 
 Different player engines built on top of the Media Source Extension all have their own implementations for listening to events.
 
-This filter aims to provide a single source of truth that can be used across player engines and native browser native playback.
+This filter aims to provide a single source of truth that can be used across player engines and browser native playback.
 
 Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevinn/player-analytics-specification).
 
