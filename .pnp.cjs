@@ -28,7 +28,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@semantic-release/changelog", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.2"],\
+            ["@semantic-release/changelog", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.3"],\
             ["@semantic-release/git", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:10.0.1"],\
             ["@snowpack/plugin-typescript", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:1.2.1"],\
             ["@swc/core", "npm:1.3.42"],\
@@ -113,7 +113,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@eyevinn/media-event-filter", "workspace:."],\
-            ["@semantic-release/changelog", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.2"],\
+            ["@semantic-release/changelog", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.3"],\
             ["@semantic-release/git", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:10.0.1"],\
             ["@snowpack/plugin-typescript", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:1.2.1"],\
             ["@swc/core", "npm:1.3.42"],\
@@ -694,17 +694,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@semantic-release/changelog", [\
-        ["npm:6.0.2", {\
-          "packageLocation": "./.yarn/cache/@semantic-release-changelog-npm-6.0.2-63a61e6d7f-e116a1ac25.zip/node_modules/@semantic-release/changelog/",\
+        ["npm:6.0.3", {\
+          "packageLocation": "./.yarn/cache/@semantic-release-changelog-npm-6.0.3-32085d167e-63283df7aa.zip/node_modules/@semantic-release/changelog/",\
           "packageDependencies": [\
-            ["@semantic-release/changelog", "npm:6.0.2"]\
+            ["@semantic-release/changelog", "npm:6.0.3"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.2", {\
-          "packageLocation": "./.yarn/__virtual__/@semantic-release-changelog-virtual-b9ebca7f6b/0/cache/@semantic-release-changelog-npm-6.0.2-63a61e6d7f-e116a1ac25.zip/node_modules/@semantic-release/changelog/",\
+        ["virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.3", {\
+          "packageLocation": "./.yarn/__virtual__/@semantic-release-changelog-virtual-d2721028e0/0/cache/@semantic-release-changelog-npm-6.0.3-32085d167e-63283df7aa.zip/node_modules/@semantic-release/changelog/",\
           "packageDependencies": [\
-            ["@semantic-release/changelog", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.2"],\
+            ["@semantic-release/changelog", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:6.0.3"],\
             ["@semantic-release/error", "npm:3.0.0"],\
             ["@types/semantic-release", null],\
             ["aggregate-error", "npm:3.1.0"],\
