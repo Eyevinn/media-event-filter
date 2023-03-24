@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Eyevinn/media-event-filter/compare/v1.0.2...v1.0.3) (2023-03-24)
+
+
+### Bug Fixes
+
+* playback ending dispatches `pause` then `ended` ([5369a5f](https://github.com/Eyevinn/media-event-filter/commit/5369a5fbc646f204a361aa4f36cfecec8dfe1d24))
+
 ## [1.0.2](https://github.com/Eyevinn/media-event-filter/compare/v1.0.1...v1.0.2) (2023-03-02)
 
 
