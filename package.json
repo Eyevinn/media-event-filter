@@ -8,6 +8,7 @@
   "repository": "git@github.com:Eyevinn/media-event-filter.git",
   "author": "Martin <901824+martinstark@users.noreply.github.com>",
   "license": "MIT",
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
