@@ -296,6 +296,8 @@ export const getMediaEventFilter = ({
   };
 
   const onPause = (): void => {
+    // playback ending should not trigger a pause event
+    if (videoElement.ended) return;
     // Allow pausing while already paused if a play was requested
     if (!state.playRequested && state.paused) return;
 
