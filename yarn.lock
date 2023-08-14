@@ -90,7 +90,7 @@ __metadata:
     "@semantic-release/git": 10.0.1
     "@snowpack/plugin-typescript": 1.2.1
     "@swc/core": 1.3.64
-    "@types/node": 20.3.1
+    "@types/node": 20.5.0
     "@types/webpack": 5.28.1
     prettier: 2.8.8
     semantic-release: 21.0.7
@@ -1031,10 +1031,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.3.1":
-  version: 20.3.1
-  resolution: "@types/node@npm:20.3.1"
-  checksum: 63a393ab6d947be17320817b35d7277ef03728e231558166ed07ee30b09fd7c08861be4d746f10fdc63ca7912e8cd023939d4eab887ff6580ff704ff24ed810c
+"@types/node@npm:20.5.0":
+  version: 20.5.0
+  resolution: "@types/node@npm:20.5.0"
+  checksum: 659bc5fc93b5c02bd88ca4bfae4f6b9dc307d45884d1dd9d69df85819a9943cdc00cd3c87eec3048866df6a67f52297f74d170e47a44f61edb3e8f770d94e85e
   languageName: node
   linkType: hard
 
