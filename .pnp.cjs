@@ -34,7 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@swc/core", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:1.3.78"],\
             ["@types/node", "npm:20.5.0"],\
             ["@types/webpack", "npm:5.28.1"],\
-            ["prettier", "npm:2.8.8"],\
+            ["prettier", "npm:3.0.2"],\
             ["semantic-release", "npm:21.0.7"],\
             ["swc-loader", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:0.2.3"],\
             ["terser-webpack-plugin", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:5.3.9"],\
@@ -144,7 +144,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@swc/core", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:1.3.78"],\
             ["@types/node", "npm:20.5.0"],\
             ["@types/webpack", "npm:5.28.1"],\
-            ["prettier", "npm:2.8.8"],\
+            ["prettier", "npm:3.0.2"],\
             ["semantic-release", "npm:21.0.7"],\
             ["swc-loader", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:0.2.3"],\
             ["terser-webpack-plugin", "virtual:fb8801c92f00dd6667e99783f87b2e06c1c6c50f0595efcce728769d09c4c45fedb4b7f07b30ada4bba6b9ae92f0709c7cb65194b0fb97aa71ba7eb48c132ee3#npm:5.3.9"],\
@@ -6567,10 +6567,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["prettier", [\
-        ["npm:2.8.8", {\
-          "packageLocation": "./.yarn/cache/prettier-npm-2.8.8-430828a36c-b49e409431.zip/node_modules/prettier/",\
+        ["npm:3.0.2", {\
+          "packageLocation": "./.yarn/cache/prettier-npm-3.0.2-2cbecb9037-118b59ddb6.zip/node_modules/prettier/",\
           "packageDependencies": [\
-            ["prettier", "npm:2.8.8"]\
+            ["prettier", "npm:3.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
