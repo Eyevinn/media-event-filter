@@ -28,7 +28,7 @@
     "@types/node": "20.5.0",
     "@types/webpack": "5.28.4",
     "prettier": "2.8.8",
-    "semantic-release": "21.0.7",
+    "semantic-release": "22.0.8",
     "swc-loader": "0.2.3",
     "terser-webpack-plugin": "5.3.9",
     "ts-node": "10.9.1",
