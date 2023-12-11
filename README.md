@@ -18,8 +18,6 @@ Does not support native HTML5 MSE controls (`<video controls>`). It works, but e
 
 Does not support re-using the same video element.
 
-Does not support restarting the video after end of stream has been reached.
-
 ## Usage
 
 `npm install @eyevinn/media-event-filter`
@@ -315,6 +313,12 @@ Can not trigger before loaded.
 A timeupdate event
 
 Can not trigger before loaded.
+
+### ended
+
+The player has reached the end of a stream.
+
+To allow restarting the stream after the end of stream has been reached set `allowResumeAfterEnded` to `true`.
 
 ## Contributing
 

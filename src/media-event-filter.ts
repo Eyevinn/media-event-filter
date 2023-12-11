@@ -27,6 +27,7 @@ type TFilteredMediaEventCallback = (event: FilteredMediaEvent) => void;
 type TMediaEventFilterOptions = {
   videoElement: HTMLVideoElement;
   callback: TFilteredMediaEventCallback;
+  allowResumeAfterEnded?: boolean;
 };
 
 type TCallback = () => void;
@@ -101,6 +102,7 @@ export type TMediaEventFilter = {
 export const getMediaEventFilter = ({
   videoElement,
   callback,
+  allowResumeAfterEnded = false,
 }: TMediaEventFilterOptions): TMediaEventFilter => {
   let ratechangeBufferTimeout: number | null = null;
 
@@ -114,7 +116,8 @@ export const getMediaEventFilter = ({
     ...initialState,
   };
 
-  const isNotReady = (): boolean => state.loading || state.ended;
+  const isNotReady = (): boolean =>
+    allowResumeAfterEnded ? state.loading : state.loading || state.ended;
 
   const onCanPlayThrough = (): void => {
     if (!state.loading) {
@@ -152,6 +155,12 @@ export const getMediaEventFilter = ({
   const onSeeking = (): void => {
     // playback should be ready before reacting to "seeking" event (e.g. shaka jumps)
     if (isNotReady()) return;
+
+    // If stream has reached the end and an onSeeking has been triggered we want to set the ended state to false
+    // This can only happen if allowResumeAfterEnded is set to true (otherwise isNotReady is true)
+    if (state.ended) {
+      state.ended = false;
+    }
 
     // end ongoing buffering, this enables trackers to report
     // the buffer duration before starting the seek.
