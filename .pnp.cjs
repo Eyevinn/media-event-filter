@@ -649,19 +649,20 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@octokit/plugin-retry", [\
-        ["npm:5.0.2", {\
-          "packageLocation": "./.yarn/cache/@octokit-plugin-retry-npm-5.0.2-704e771383-b86f92a55e.zip/node_modules/@octokit/plugin-retry/",\
+        ["npm:5.0.5", {\
+          "packageLocation": "./.yarn/cache/@octokit-plugin-retry-npm-5.0.5-6268d6d968-c0bf1735e8.zip/node_modules/@octokit/plugin-retry/",\
           "packageDependencies": [\
-            ["@octokit/plugin-retry", "npm:5.0.2"]\
+            ["@octokit/plugin-retry", "npm:5.0.5"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:5.0.2", {\
-          "packageLocation": "./.yarn/__virtual__/@octokit-plugin-retry-virtual-0428f29885/0/cache/@octokit-plugin-retry-npm-5.0.2-704e771383-b86f92a55e.zip/node_modules/@octokit/plugin-retry/",\
+        ["virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:5.0.5", {\
+          "packageLocation": "./.yarn/__virtual__/@octokit-plugin-retry-virtual-2dd44e9adc/0/cache/@octokit-plugin-retry-npm-5.0.5-6268d6d968-c0bf1735e8.zip/node_modules/@octokit/plugin-retry/",\
           "packageDependencies": [\
-            ["@octokit/plugin-retry", "virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:5.0.2"],\
+            ["@octokit/plugin-retry", "virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:5.0.5"],\
             ["@octokit/core", "npm:4.2.1"],\
-            ["@octokit/types", "npm:9.0.0"],\
+            ["@octokit/request-error", "npm:4.0.2"],\
+            ["@octokit/types", "npm:10.0.0"],\
             ["@types/octokit__core", null],\
             ["bottleneck", "npm:2.19.5"]\
           ],\
@@ -721,6 +722,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["once", "npm:1.4.0"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/@octokit-request-error-npm-4.0.2-406b89d50f-9510078f71.zip/node_modules/@octokit/request-error/",\
+          "packageDependencies": [\
+            ["@octokit/request-error", "npm:4.0.2"],\
+            ["@octokit/types", "npm:10.0.0"],\
+            ["deprecation", "npm:2.3.1"],\
+            ["once", "npm:1.4.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@octokit/tsconfig", [\
@@ -733,6 +744,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@octokit/types", [\
+        ["npm:10.0.0", {\
+          "packageLocation": "./.yarn/cache/@octokit-types-npm-10.0.0-8ea850424d-8aafba2ff0.zip/node_modules/@octokit/types/",\
+          "packageDependencies": [\
+            ["@octokit/types", "npm:10.0.0"],\
+            ["@octokit/openapi-types", "npm:18.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
         ["npm:9.0.0", {\
           "packageLocation": "./.yarn/cache/@octokit-types-npm-9.0.0-3a83131100-5c7f5cca8f.zip/node_modules/@octokit/types/",\
           "packageDependencies": [\
@@ -904,7 +923,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@semantic-release/github", "virtual:af2cf72dc39691c71459e458026c5c34e70102662ec3c672a81f04a0a9438b409df99e648748671b2c936443bb341cff406321d9d48103b5d85fdc26705c8a42#npm:9.0.3"],\
             ["@octokit/core", "npm:4.2.1"],\
             ["@octokit/plugin-paginate-rest", "virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:7.0.0"],\
-            ["@octokit/plugin-retry", "virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:5.0.2"],\
+            ["@octokit/plugin-retry", "virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:5.0.5"],\
             ["@octokit/plugin-throttling", "virtual:279f62e0c28ec8e78d5104d27f8143f0c7a70bbd013c0cbf5a45df5152e8e517227d5b7bfdb79d0d02d11b8a6e4f0933c600a18e004c63986495c6226c669a39#npm:6.1.0"],\
             ["@semantic-release/error", "npm:4.0.0"],\
             ["@types/semantic-release", null],\
