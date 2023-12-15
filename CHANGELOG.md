@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/Eyevinn/media-event-filter/compare/v1.0.3...v1.0.4) (2023-12-15)
+
+
+### Bug Fixes
+
+* allow seeking after a stream has reached the end ([e5fe405](https://github.com/Eyevinn/media-event-filter/commit/e5fe405cd1319c8f696cd0c85f711cccf8e634c3))
+* mark as side effect free ([6e2c307](https://github.com/Eyevinn/media-event-filter/commit/6e2c307062a29aafed37a0c6ef46c6fa5af950cb))
+
 ## [1.0.3](https://github.com/Eyevinn/media-event-filter/compare/v1.0.2...v1.0.3) (2023-03-24)
 
 
