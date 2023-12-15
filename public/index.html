@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <head>
   <style>
     html {
@@ -76,7 +76,7 @@
     Object.values(MediaEvent).forEach((evt) =>
       videoElement.addEventListener(evt, () => {
         console.log("%cNativeEv: %s", "color:#cf1313;font-weight:bold;", evt);
-      })
+      }),
     );
 
     getMediaEventFilter({

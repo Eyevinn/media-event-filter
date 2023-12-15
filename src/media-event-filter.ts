@@ -453,7 +453,7 @@ export const getMediaEventFilter = ({
   ];
 
   EventHandlerPairs.forEach(([event, handler]) =>
-    videoElement.addEventListener(event, handler)
+    videoElement.addEventListener(event, handler),
   );
 
   return {
@@ -461,7 +461,7 @@ export const getMediaEventFilter = ({
       clearRatechangeBufferTimeout();
 
       EventHandlerPairs.forEach(([event, handler]) =>
-        videoElement.removeEventListener(event, handler)
+        videoElement.removeEventListener(event, handler),
       );
     },
   };
