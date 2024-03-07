@@ -1,6 +1,6 @@
 # Media Event Filter
 
-A small package for producing a sane default interpretation of commonly used playback events from a [HTMLVideoElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement).
+A dependecy free, tiny package for producing a sane default interpretation of playback events from a [HTMLVideoElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement).
 
 ## Why
 
