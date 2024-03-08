@@ -29,7 +29,7 @@
     "@types/webpack": "5.28.5",
     "prettier": "3.2.5",
     "semantic-release": "22.0.12",
-    "swc-loader": "0.2.3",
+    "swc-loader": "0.2.6",
     "terser-webpack-plugin": "5.3.10",
     "ts-node": "10.9.2",
     "typescript": "5.3.3",
