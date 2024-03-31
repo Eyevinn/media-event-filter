@@ -25,7 +25,7 @@ export enum FilteredMediaEvent {
 type TFilteredMediaEventCallback = (event: FilteredMediaEvent) => void;
 
 type TMediaEventFilterOptions = {
-  videoElement: HTMLVideoElement;
+  mediaElement: HTMLMediaElement;
   callback: TFilteredMediaEventCallback;
   allowResumeAfterEnded?: boolean;
 };
@@ -77,10 +77,10 @@ const initialState = {
   ended: false,
   // true until the video is ready to play, only toggles once
   loading: true,
-  // true when the videoElement behavior is interpreted as buffering
+  // true when the mediaElement behavior is interpreted as buffering
   // should not toggle while seeking
   buffering: false,
-  // true when the videoElement behavior is interpreted as seeking
+  // true when the mediaElement behavior is interpreted as seeking
   // a seek should cancel buffering
   seeking: false,
   // initial play is different from subsequent plays, because paused is false
@@ -100,7 +100,7 @@ export type TMediaEventFilter = {
 };
 
 export const getMediaEventFilter = ({
-  videoElement,
+  mediaElement,
   callback,
   allowResumeAfterEnded = false,
 }: TMediaEventFilterOptions): TMediaEventFilter => {
@@ -122,7 +122,7 @@ export const getMediaEventFilter = ({
   const onCanPlayThrough = (): void => {
     if (!state.loading) {
       // Recover from Safari "mute" micro buffer triggered by "waiting"
-      if (state.buffering && videoElement.playbackRate > 0) {
+      if (state.buffering && mediaElement.playbackRate > 0) {
         state = {
           ...state,
           buffering: false,
@@ -135,7 +135,7 @@ export const getMediaEventFilter = ({
     if (state.loading) {
       // guard for when an engine sets playbackRate to 0 to continue buffering
       // recover in "ratechange" event
-      if (videoElement.playbackRate === 0) {
+      if (mediaElement.playbackRate === 0) {
         state = {
           ...state,
           deferLoadedEvent: true,
@@ -183,7 +183,7 @@ export const getMediaEventFilter = ({
 
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
-    if (videoElement.playbackRate === 0) {
+    if (mediaElement.playbackRate === 0) {
       state = {
         ...state,
         deferSeekedEvent: true,
@@ -210,7 +210,7 @@ export const getMediaEventFilter = ({
     if (state.seeking) return;
 
     // some browsers send "waiting" before the "seeking" event
-    if (videoElement.seeking) {
+    if (mediaElement.seeking) {
       onSeeking();
       return;
     }
@@ -247,7 +247,7 @@ export const getMediaEventFilter = ({
 
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
-    if (videoElement.playbackRate === 0) {
+    if (mediaElement.playbackRate === 0) {
       state = {
         ...state,
         deferPlayingEvent: true,
@@ -306,7 +306,7 @@ export const getMediaEventFilter = ({
 
   const onPause = (): void => {
     // playback ending should not trigger a pause event
-    if (videoElement.ended) return;
+    if (mediaElement.ended) return;
     // Allow pausing while already paused if a play was requested
     if (!state.playRequested && state.paused) return;
 
@@ -327,7 +327,7 @@ export const getMediaEventFilter = ({
 
       callback(FilteredMediaEvent.LOADED);
 
-      if (videoElement.paused) {
+      if (mediaElement.paused) {
         state = {
           ...state,
           paused: true,
@@ -351,14 +351,14 @@ export const getMediaEventFilter = ({
     // Not already buffering
     !state.buffering &&
     // playbackRate is 0
-    videoElement.playbackRate === 0 &&
-    // videoElement does not indicate it's seeking
-    !videoElement.seeking;
+    mediaElement.playbackRate === 0 &&
+    // mediaElement does not indicate it's seeking
+    !mediaElement.seeking;
 
   const onRatechange = (): void => {
     clearRatechangeBufferTimeout();
 
-    const playbackRateIsPositive = videoElement.playbackRate > 0;
+    const playbackRateIsPositive = mediaElement.playbackRate > 0;
 
     // the engine kept buffering after "canplaythrough" event, recover
     if (state.deferLoadedEvent && playbackRateIsPositive) {
@@ -427,7 +427,7 @@ export const getMediaEventFilter = ({
   const onTimeupdate = (): void => {
     if (isNotReady()) return;
 
-    if (state.buffering && !videoElement.paused) {
+    if (state.buffering && !mediaElement.paused) {
       state = {
         ...state,
         buffering: false,
@@ -453,7 +453,7 @@ export const getMediaEventFilter = ({
   ];
 
   EventHandlerPairs.forEach(([event, handler]) =>
-    videoElement.addEventListener(event, handler),
+    mediaElement.addEventListener(event, handler),
   );
 
   return {
@@ -461,7 +461,7 @@ export const getMediaEventFilter = ({
       clearRatechangeBufferTimeout();
 
       EventHandlerPairs.forEach(([event, handler]) =>
-        videoElement.removeEventListener(event, handler),
+        mediaElement.removeEventListener(event, handler),
       );
     },
   };

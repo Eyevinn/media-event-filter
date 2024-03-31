@@ -70,17 +70,17 @@
       MediaEvent,
     } from "./main.mjs";
 
-    const videoElement = document.getElementById("videoEl");
+    const mediaElement = document.getElementById("videoEl");
     let i = 1;
 
     Object.values(MediaEvent).forEach((evt) =>
-      videoElement.addEventListener(evt, () => {
+      mediaElement.addEventListener(evt, () => {
         console.log("%cNativeEv: %s", "color:#cf1313;font-weight:bold;", evt);
       }),
     );
 
     getMediaEventFilter({
-      videoElement,
+      mediaElement,
       callback: (evt) => {
         console.log("%cFiltered: %s", "color:#267dff;font-weight:bold;", evt);
 

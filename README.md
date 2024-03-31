@@ -1,6 +1,6 @@
 # Media Event Filter
 
-A dependecy free, tiny package for producing a sane default interpretation of playback events from a [HTMLVideoElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement).
+A dependecy free, tiny package for producing a sane default interpretation of playback events from a [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement).
 
 ## Why
 
@@ -37,7 +37,7 @@ const videoElement = document.createElement("video");
 // Using a switch statement
 
 const mediaEventFilter = getMediaEventFilter({
-  videoElement,
+  mediaElement: videoElement,
   callback: (event: FilteredMediaEvent) => {
     switch (event) {
       case FilteredMediaEvent.LOADED:
@@ -76,7 +76,7 @@ const handlers = {
 };
 
 const mediaEventFilter = getMediaEventFilter({
-  videoElement,
+  mediaElement: videoElement,
   callback: (event: FilteredMediaEvent) => handlers[event]?.(),
 });
 ```
@@ -115,7 +115,7 @@ const PlayerComponent = ({ videoUrl }) => {
     if (!videoUrl || !videoRef.current) return () => {};
 
     const eventFilter = getMediaEventFilter({
-      videoElement: videoRef.current,
+      mediaElement: videoRef.current,
       // add your state handlers here
       callback: (event) => {
         switch (event) {
