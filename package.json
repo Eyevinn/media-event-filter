@@ -25,7 +25,7 @@
     "@semantic-release/git": "10.0.1",
     "@snowpack/plugin-typescript": "1.2.1",
     "@swc/core": "1.4.7",
-    "@types/node": "20.11.27",
+    "@types/node": "20.12.2",
     "@types/webpack": "5.28.5",
     "prettier": "3.2.5",
     "semantic-release": "23.0.2",
