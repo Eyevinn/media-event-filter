@@ -1,3 +1,22 @@
+# [2.0.0](https://github.com/Eyevinn/media-event-filter/compare/v1.0.4...v2.0.0) (2024-04-02)
+
+
+### Bug Fixes
+
+* bump workflow node dep to 20.x, required by semantic-release ([8f1ea26](https://github.com/Eyevinn/media-event-filter/commit/8f1ea26bea40e38a9966072db2f3d9a224d400c3))
+* update yarn deps ([ccedbdc](https://github.com/Eyevinn/media-event-filter/commit/ccedbdc0951fb831b8dc30f63e45553aa3729be8))
+
+
+* feat!: allow using any HTMLMediaElement ([5b502e9](https://github.com/Eyevinn/media-event-filter/commit/5b502e9f17dccba03606b47a32b929bdc2395d93))
+
+
+### BREAKING CHANGES
+
+* videoElement argument renamed to mediaElement
+
+OLD: getMediaEventFilter({ videoElement });
+NEW: getMediaEventFilter({ mediaElement });
+
 ## [1.0.4](https://github.com/Eyevinn/media-event-filter/compare/v1.0.3...v1.0.4) (2023-12-15)
 
 
