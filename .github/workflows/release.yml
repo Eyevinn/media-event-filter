@@ -18,7 +18,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20.8.x"
+          node-version: "20.11.x"
       # Install stuff
       - name: Set up yarn scope
         run: yarn config set npmAuthToken $NPM_TOKEN
