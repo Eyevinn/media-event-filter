@@ -25,12 +25,12 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install --immutable
       # Do releases
       - name: semantic-release
         run: |
           npm config set workspaces-update false |
-          npm run release
+          yarn release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
