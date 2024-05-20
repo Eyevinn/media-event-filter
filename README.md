@@ -12,11 +12,38 @@ This filter aims to provide a single source of truth that can be used across pla
 
 Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevinn/player-analytics-specification).
 
+## Overview
+
+```typescript
+  /** Loading of stream is complete, playback is ready to start */
+  /** It is now safe to let the user press a play button */
+  "loaded"
+  /** A seek has started */
+  "seeking"
+  /** A seek has ended  */
+  "seeked"
+  /** Buffering has started */
+  /** Does not trigger during seek, cancelled by a seek */
+   "buffering"
+  /** Buffering has ended */
+  /** Does not trigger during seek */
+  "buffered"
+  /** A request to start playing again has been made */
+  "play"
+  /** The stream has started playing after loading completed
+   *  OR the stream has started playing after the stream was previously paused */
+  "playing"
+  /** The stream has been paused */
+  "pause"
+  /** The end of the stream was reached */
+  "ended"
+  /** A timeupdate event */
+  "timeupdate"
+```
+
 ## Limitations
 
 Does not support native HTML5 MSE controls (`<video controls>`). It works, but event sequence will not strictly follow EPAS in all browsers.
-
-Does not support re-using the same video element.
 
 ## Usage
 
