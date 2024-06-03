@@ -27,7 +27,7 @@
     "@swc/core": "1.4.11",
     "@types/node": "20.12.2",
     "@types/webpack": "5.28.5",
-    "prettier": "3.2.5",
+    "prettier": "3.3.0",
     "semantic-release": "23.0.6",
     "swc-loader": "0.2.6",
     "terser-webpack-plugin": "5.3.10",
