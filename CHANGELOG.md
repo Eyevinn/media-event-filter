@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/Eyevinn/media-event-filter/compare/v2.0.0...v2.1.0) (2024-06-28)
+
+
+### Features
+
+* prevent buffering at end of stream ([a397518](https://github.com/Eyevinn/media-event-filter/commit/a39751843a62c9d9019c48643400e50cbd49c921))
+
 # [2.0.0](https://github.com/Eyevinn/media-event-filter/compare/v1.0.4...v2.0.0) (2024-04-02)
 
 
