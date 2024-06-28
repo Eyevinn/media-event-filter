@@ -65,7 +65,7 @@ __metadata:
     "@semantic-release/git": "npm:10.0.1"
     "@snowpack/plugin-typescript": "npm:1.2.1"
     "@swc/core": "npm:1.4.11"
-    "@types/node": "npm:20.12.2"
+    "@types/node": "npm:20.14.9"
     "@types/webpack": "npm:5.28.5"
     prettier: "npm:3.3.2"
     semantic-release: "npm:23.0.6"
@@ -1083,12 +1083,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.12.2":
+"@types/node@npm:*":
   version: 20.12.2
   resolution: "@types/node@npm:20.12.2"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10/f1f0ebfe475aefa183763b856e0023b81b76554196e8676a45b9fcfd1012cdd20d32adefb3c0330001c0011e074676603c34c24821a4924228250ea13a75da43
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:20.14.9":
+  version: 20.14.9
+  resolution: "@types/node@npm:20.14.9"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10/f313b06c79be92f5d3541159ef813b9fc606941f951ecf826e940658c6d4952755ca2f06277b746326cef0697ed79a04676ecde053d32e1121b3352c8168d2e9
   languageName: node
   linkType: hard
 
