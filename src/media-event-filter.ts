@@ -204,6 +204,8 @@ export const getMediaEventFilter = ({
   const onWaiting = (): void => {
     clearRatechangeBufferTimeout();
 
+    // Firefox + hls.js will cause a waiting event on reaching EOS
+    if (mediaElement.ended) return;
     // playback should be ready before reacting to "waiting" event
     if (isNotReady()) return;
     // ignore "waiting" while seeking
@@ -357,6 +359,9 @@ export const getMediaEventFilter = ({
 
   const onRatechange = (): void => {
     clearRatechangeBufferTimeout();
+
+    // Ignore ratechange if EOS has been reached
+    if (mediaElement.ended) return;
 
     const playbackRateIsPositive = mediaElement.playbackRate > 0;
 
