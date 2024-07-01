@@ -119,6 +119,16 @@ export const getMediaEventFilter = ({
   const isNotReady = (): boolean =>
     allowResumeAfterEnded ? state.loading : state.loading || state.ended;
 
+  // Reset state of media event filter when a new src is
+  // attached to the media element.
+  const onEmptied = (): void => {
+    clearRatechangeBufferTimeout();
+
+    state = {
+      ...initialState,
+    };
+  };
+
   const onCanPlayThrough = (): void => {
     if (!state.loading) {
       // Recover from Safari "mute" micro buffer triggered by "waiting"
@@ -455,6 +465,7 @@ export const getMediaEventFilter = ({
     [MediaEvent.play, onPlay],
     [MediaEvent.pause, onPause],
     [MediaEvent.ratechange, onRatechange],
+    [MediaEvent.emptied, onEmptied],
   ];
 
   EventHandlerPairs.forEach(([event, handler]) =>
