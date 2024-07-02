@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/Eyevinn/media-event-filter/compare/v2.1.0...v2.2.0) (2024-07-02)
+
+
+### Features
+
+* enable reuse of MediaElement ([8f0dd2b](https://github.com/Eyevinn/media-event-filter/commit/8f0dd2b8df0ebcec5417e9b99b9a870881578bfc))
+
 # [2.1.0](https://github.com/Eyevinn/media-event-filter/compare/v2.0.0...v2.1.0) (2024-06-28)
 
 
