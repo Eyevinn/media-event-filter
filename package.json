@@ -1,7 +1,11 @@
 {
   "name": "@eyevinn/media-event-filter",
   "version": "2.2.0",
-  "files": ["dist", "CHANGELOG.md"],
+  "files": [
+    "build",
+    "CHANGELOG.md",
+    "src"
+  ],
   "type": "module",
   "description": "HTML5 media event filter",
   "main": "build/mef.min.js",
