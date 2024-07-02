@@ -36,6 +36,13 @@
       margin: 0 0 1rem 0;
     }
 
+    .box-2 {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 0 0 1rem 0;
+    }
+
     .event {
       color: #1a1a1a;
       padding: 0.2rem 1rem;
@@ -72,7 +79,7 @@
   <div class="wrapper">
     <div class="box">
       <video preload="metadata" playsinline controls id="videoEl"></video>
-      <div>
+      <div class="box-2">
         <button id="switch">Update src</button>
         <button id="clear">Clear src</button>
         <button id="load">Load</button>
