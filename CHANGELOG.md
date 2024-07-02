@@ -1,3 +1,11 @@
+## [2.2.1](https://github.com/Eyevinn/media-event-filter/compare/v2.2.0...v2.2.1) (2024-07-02)
+
+
+### Bug Fixes
+
+* update release files ([a346120](https://github.com/Eyevinn/media-event-filter/commit/a3461202dd5bc0241f714bacfd248e8fc7760584))
+* update release files ([731acd1](https://github.com/Eyevinn/media-event-filter/commit/731acd1c8ccd8349b1a1c1406cc5833488df8e41))
+
 # [2.2.0](https://github.com/Eyevinn/media-event-filter/compare/v2.1.0...v2.2.0) (2024-07-02)
 
 
