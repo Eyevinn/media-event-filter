@@ -116,17 +116,21 @@ export const getMediaEventFilter = ({
     ...initialState,
   };
 
+  const reset = (): void => {
+    clearRatechangeBufferTimeout();
+
+    state = {
+      ...initialState,
+    };
+  };
+
   const isNotReady = (): boolean =>
     allowResumeAfterEnded ? state.loading : state.loading || state.ended;
 
   // Reset state of media event filter when a new src is
   // attached to the media element.
   const onEmptied = (): void => {
-    clearRatechangeBufferTimeout();
-
-    state = {
-      ...initialState,
-    };
+    reset();
   };
 
   const onCanPlayThrough = (): void => {
@@ -247,9 +251,8 @@ export const getMediaEventFilter = ({
     // mediaElement.ended will already have toggled from true to false
     // when this happens, use cached ended state instead.
     if (state.ended) {
-      state = {
-        ...initialState,
-      };
+      reset();
+      return;
     }
 
     if (isNotReady()) return;
