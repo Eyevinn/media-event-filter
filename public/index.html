@@ -107,7 +107,7 @@
 
     const mediaElement = document.getElementById("videoEl");
     let i = 1;
-    let measuredDuration = 0;
+    let seekOrBufferTimestamp = 0;
 
     mediaElement.src = videos[0];
 
@@ -154,18 +154,16 @@
             evt,
           )
         ) {
-          measuredDuration = Date.now();
+          seekOrBufferTimestamp = Date.now();
         }
 
         if (
           [FilteredMediaEvent.BUFFERED, FilteredMediaEvent.SEEKED].includes(evt)
         ) {
-          measuredDuration = Date.now() - measuredDuration;
-
           console.log(
             "%cFiltered: %s",
             "color:#267dff;font-weight:bold;",
-            `${evt} (${measuredDuration}ms)`,
+            `${evt} (${(Date.now() - seekOrBufferTimestamp) / 1000}s)`,
           );
           console.info("\n");
         } else {
@@ -180,11 +178,11 @@
           i +
           ": " +
           `${evt} ${
-            measuredDuration &&
+            seekOrBufferTimestamp &&
             [FilteredMediaEvent.BUFFERED, FilteredMediaEvent.SEEKED].includes(
               evt,
             )
-              ? `(${measuredDuration}ms)`
+              ? `(${(Date.now() - seekOrBufferTimestamp) / 1000}s)`
               : ""
           }`;
 
