@@ -242,6 +242,10 @@ export const getMediaEventFilter = ({
   };
 
   const onPlay = (): void => {
+    // handle pressing play or seeking back into the video after ended.
+    //
+    // mediaElement.ended will already have toggled from true to false
+    // when this happens, use cached ended state instead.
     if (state.ended) {
       state = {
         ...initialState,
