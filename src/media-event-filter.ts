@@ -239,6 +239,12 @@ export const getMediaEventFilter = ({
   };
 
   const onPlay = (): void => {
+    if (state.ended) {
+      state = {
+        ...initialState,
+      };
+    }
+
     if (isNotReady()) return;
 
     // block mse plays triggered after buffering and seeks
