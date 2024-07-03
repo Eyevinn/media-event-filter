@@ -2,6 +2,7 @@ node_modules
 yarn-error.log
 build
 dist
+.yarnrc.yml
 
 .yarn/*
 !.yarn/cache
