@@ -131,7 +131,10 @@ export const getMediaEventFilter = ({
 
   const onCanPlayThrough = (): void => {
     if (!state.loading) {
-      // Recover from Safari "mute" micro buffer triggered by "waiting"
+      // Safari triggers "waiting" when muting a stream.
+      //
+      // This logic recovers from the Safari micro buffer triggered
+      // by a mute.
       if (state.buffering && mediaElement.playbackRate > 0) {
         state = {
           ...state,
