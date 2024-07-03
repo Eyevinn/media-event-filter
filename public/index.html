@@ -1,5 +1,7 @@
 <!doctype html>
 <head>
+  <link rel="icon" href="favicon.svg" />
+  <title>Media Event Filter Demo</title>
   <style>
     html {
       font-size: 67.5%;
@@ -104,33 +106,95 @@
     ];
 
     const mediaElement = document.getElementById("videoEl");
-    mediaElement.src = videos[0];
     let i = 1;
+    let measuredDuration = 0;
+
+    mediaElement.src = videos[0];
 
     Object.values(MediaEvent).forEach((evt) =>
       mediaElement.addEventListener(evt, () => {
-        console.log("%cNativeEv: %s", "color:#cf1313;font-weight:bold;", evt);
+        const mediaElementState = {
+          networkState: mediaElement.networkState,
+          readyState: mediaElement.readyState,
+          paused: mediaElement.paused,
+          ended: mediaElement.ended,
+          error: mediaElement.error,
+          currentTime: mediaElement.currentTime,
+          duration: mediaElement.duration,
+          seeking: mediaElement.seeking,
+        };
+
+        console[evt === MediaEvent.timeupdate ? "debug" : "log"](
+          "%cNativeEv: %s",
+          "color:#cf1313;font-weight:bold;",
+          evt,
+        );
+
+        console[evt === MediaEvent.timeupdate ? "debug" : "info"](
+          "Media Element State",
+          mediaElementState,
+        );
       }),
     );
 
     getMediaEventFilter({
       mediaElement,
       callback: (evt) => {
-        console.log("%cFiltered: %s", "color:#267dff;font-weight:bold;", evt);
+        if (evt === FilteredMediaEvent.TIME_UPDATE) {
+          console.debug(
+            "%cFiltered: %s",
+            "color:#267dff;font-weight:bold;",
+            evt,
+          );
+          return;
+        }
 
-        if (evt === FilteredMediaEvent.TIME_UPDATE) return;
+        if (
+          [FilteredMediaEvent.BUFFERING, FilteredMediaEvent.SEEKING].includes(
+            evt,
+          )
+        ) {
+          measuredDuration = Date.now();
+        }
+
+        if (
+          [FilteredMediaEvent.BUFFERED, FilteredMediaEvent.SEEKED].includes(evt)
+        ) {
+          measuredDuration = Date.now() - measuredDuration;
+
+          console.log(
+            "%cFiltered: %s",
+            "color:#267dff;font-weight:bold;",
+            `${evt} (${measuredDuration}ms)`,
+          );
+          console.info("\n");
+        } else {
+          console.log("%cFiltered: %s", "color:#267dff;font-weight:bold;", evt);
+          console.info("\n");
+        }
 
         const box = document.createElement("div");
 
         box.classList.add("event");
-        box.innerText = i + ": " + evt;
+        box.innerText =
+          i +
+          ": " +
+          `${evt} ${
+            measuredDuration &&
+            [FilteredMediaEvent.BUFFERED, FilteredMediaEvent.SEEKED].includes(
+              evt,
+            )
+              ? `(${measuredDuration}ms)`
+              : ""
+          }`;
+
         i++;
 
         const events = document.getElementById("events");
 
         events.prepend(box);
 
-        if (events.childElementCount > 10) {
+        if (events.childElementCount > 20) {
           events.removeChild(events.lastChild);
         }
       },
