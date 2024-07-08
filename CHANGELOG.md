@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/Eyevinn/media-event-filter/compare/v2.2.1...v2.3.0) (2024-07-08)
+
+
+### Features
+
+* support playing again after ended ([abaaa45](https://github.com/Eyevinn/media-event-filter/commit/abaaa45e7fd8e85111ecb1262ff00f4e112ab650))
+
 ## [2.2.1](https://github.com/Eyevinn/media-event-filter/compare/v2.2.0...v2.2.1) (2024-07-02)
 
 
