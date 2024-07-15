@@ -32,7 +32,7 @@
     "@swc/core": "1.6.13",
     "@types/node": "20.14.10",
     "@types/webpack": "5.28.5",
-    "prettier": "3.3.2",
+    "prettier": "3.3.3",
     "semantic-release": "24",
     "swc-loader": "0.2.6",
     "terser-webpack-plugin": "5.3.10",
