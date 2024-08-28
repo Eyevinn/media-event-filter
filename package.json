@@ -29,7 +29,7 @@
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@snowpack/plugin-typescript": "1.2.1",
-    "@swc/core": "1.6.13",
+    "@swc/core": "1.7.21",
     "@types/node": "20.14.10",
     "@types/webpack": "5.28.5",
     "prettier": "3.3.2",
