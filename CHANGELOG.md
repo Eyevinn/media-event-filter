@@ -1,3 +1,14 @@
+# [3.0.0](https://github.com/Eyevinn/media-event-filter/compare/v2.3.0...v3.0.0) (2024-09-02)
+
+
+* feat!: remove allowResumeAfterEnded option ([5f72f17](https://github.com/Eyevinn/media-event-filter/commit/5f72f17e72dbf591893c5155274a8fee3ec10566))
+
+
+### BREAKING CHANGES
+
+* allowResumeAfterEnded argument removed (this is now
+the default behaviour)
+
 # [2.3.0](https://github.com/Eyevinn/media-event-filter/compare/v2.2.1...v2.3.0) (2024-07-08)
 
 
