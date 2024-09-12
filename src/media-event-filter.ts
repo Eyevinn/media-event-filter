@@ -449,7 +449,14 @@ export const getMediaEventFilter = ({
   const onTimeupdate = (): void => {
     if (isNotReady()) return;
 
-    if (state.buffering && !mediaElement.paused) {
+    if (
+      state.buffering &&
+      !mediaElement.paused &&
+      // Playhead changed while not paused and buffering is ongoing
+      // which could indicate resumed playback. Check readyState
+      // to confirm
+      mediaElement.readyState === 4
+    ) {
       state = {
         ...state,
         buffering: false,
