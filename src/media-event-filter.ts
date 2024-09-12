@@ -455,7 +455,9 @@ export const getMediaEventFilter = ({
       // Playhead changed while not paused and buffering is ongoing
       // which could indicate resumed playback. Check readyState
       // to confirm
-      mediaElement.readyState === HTMLMediaElement.HAVE_ENOUGH_DATA
+      mediaElement.readyState === HTMLMediaElement.HAVE_ENOUGH_DATA &&
+      // Ensure Shaka isn't performing internal buffering
+      mediaElement.playbackRate !== 0
     ) {
       state = {
         ...state,
