@@ -455,7 +455,7 @@ export const getMediaEventFilter = ({
       // Playhead changed while not paused and buffering is ongoing
       // which could indicate resumed playback. Check readyState
       // to confirm
-      mediaElement.readyState === 4
+      mediaElement.readyState === HTMLMediaElement.HAVE_ENOUGH_DATA
     ) {
       state = {
         ...state,
