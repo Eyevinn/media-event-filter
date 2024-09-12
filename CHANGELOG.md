@@ -1,3 +1,15 @@
+# [3.1.0](https://github.com/Eyevinn/media-event-filter/compare/v3.0.0...v3.1.0) (2024-09-12)
+
+
+### Bug Fixes
+
+* prevent buggy buffer behaviour in new Chrome ([a45bfa6](https://github.com/Eyevinn/media-event-filter/commit/a45bfa68b5ee37b8aed6f52c59e16396803c01dd))
+
+
+### Features
+
+* improve timeupdate buffer recovery logic ([66e1e28](https://github.com/Eyevinn/media-event-filter/commit/66e1e2877a59bb4ccfbca837a2a978dc10ccd0b6))
+
 # [3.0.0](https://github.com/Eyevinn/media-event-filter/compare/v2.3.0...v3.0.0) (2024-09-02)
 
 
