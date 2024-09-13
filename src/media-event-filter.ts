@@ -65,13 +65,13 @@ type TPlaybackState = {
   paused: boolean;
   ended: boolean;
   initialPlayFired: boolean;
-  deferLoadedEvent: boolean;
+  deferCanPlayThroughHandling: boolean;
   deferPlayingEvent: boolean;
   deferSeekedEvent: boolean;
   playRequested: boolean;
 };
 
-const initialState = {
+const initialState: Record<keyof TPlaybackState, boolean> = {
   paused: false,
   ended: false,
   // true until the video is ready to play, only toggles once
@@ -88,7 +88,7 @@ const initialState = {
   // to 0 in order to buffer. "playing"/"loading"/"seeking" can trigger
   // while playbackRate is 0, in this case we defer the event until
   // playbackRate returns to a positive value.
-  deferLoadedEvent: false,
+  deferCanPlayThroughHandling: false,
   deferPlayingEvent: false,
   deferSeekedEvent: false,
   playRequested: false,
@@ -131,39 +131,52 @@ export const getMediaEventFilter = ({
   };
 
   const onCanPlayThrough = (): void => {
+    // guard for when an engine sets playbackRate to 0 to continue buffering
+    // recover in "ratechange" event
+    if (mediaElement.playbackRate === 0) {
+      state = {
+        ...state,
+        deferCanPlayThroughHandling: true,
+      };
+
+      return;
+    }
+
     if (state.loading) {
-      // Block for handling initial media load
+      // block for handling initial media load
 
-      // guard for when an engine sets playbackRate to 0 to continue buffering
-      // recover in "ratechange" event
-      if (mediaElement.playbackRate === 0) {
-        state = {
-          ...state,
-          deferLoadedEvent: true,
-        };
-      } else {
-        state = {
-          ...state,
-          loading: false,
-          deferLoadedEvent: false,
-        };
+      state = {
+        ...state,
+        loading: false,
+        deferCanPlayThroughHandling: false,
+      };
 
-        callback(FilteredMediaEvent.LOADED);
-      }
+      callback(FilteredMediaEvent.LOADED);
     } else {
-      // Block for handling behaviour after initial load
+      // block for handling behaviour after initial load,
+      // like buffer and seek recovery
+      clearRatechangeBufferTimeout();
 
-      // Safari triggers "waiting" when muting a stream.
-      //
-      // This logic recovers from the Safari micro buffer triggered
-      // by a mute.
-      if (state.buffering && mediaElement.playbackRate > 0) {
+      state = {
+        ...state,
+        deferCanPlayThroughHandling: false,
+      };
+
+      if (state.buffering) {
         state = {
           ...state,
           buffering: false,
         };
 
         callback(FilteredMediaEvent.BUFFERED);
+      } else if (state.seeking) {
+        state = {
+          ...state,
+          seeking: false,
+          deferSeekedEvent: false,
+        };
+
+        callback(FilteredMediaEvent.SEEKED);
       }
     }
   };
@@ -264,7 +277,11 @@ export const getMediaEventFilter = ({
   };
 
   const onPlaying = (): void => {
-    clearRatechangeBufferTimeout();
+    // in case of buffering and seeking native "playing" event
+    // triggers when readyState is 3 and, in some browsers,
+    // whenever it seems to feel like. We cannot trust it to
+    // indicate when buffering or seeking has finished.
+    // see "canplaythrough" handling.
 
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
@@ -297,21 +314,6 @@ export const getMediaEventFilter = ({
       };
 
       callback(FilteredMediaEvent.PLAYING);
-    } else if (state.buffering) {
-      state = {
-        ...state,
-        buffering: false,
-      };
-
-      callback(FilteredMediaEvent.BUFFERED);
-    } else if (state.seeking) {
-      state = {
-        ...state,
-        seeking: false,
-        deferSeekedEvent: false,
-      };
-
-      callback(FilteredMediaEvent.SEEKED);
     }
 
     if (state.paused && state.playRequested) {
@@ -339,11 +341,11 @@ export const getMediaEventFilter = ({
 
     // Safari autoplay block triggers with a deferred loaded event,
     // recover to a paused state
-    if (state.deferLoadedEvent) {
+    if (state.deferCanPlayThroughHandling) {
       state = {
         ...state,
         loading: false,
-        deferLoadedEvent: false,
+        deferCanPlayThroughHandling: false,
       };
 
       callback(FilteredMediaEvent.LOADED);
@@ -385,13 +387,14 @@ export const getMediaEventFilter = ({
     const playbackRateIsPositive = mediaElement.playbackRate > 0;
 
     // the engine kept buffering after "canplaythrough" event, recover
-    if (state.deferLoadedEvent && playbackRateIsPositive) {
+    if (state.deferCanPlayThroughHandling && playbackRateIsPositive) {
       onCanPlayThrough();
     }
 
-    // The engine kept buffering after "seeked" event, recover.
-    // Trigger before deferred playing check, since playing can
-    // be converted to seeked.
+    // the engine kept buffering after "seeked" event, recover
+    //
+    // seeked is triggered by onCanPlayThrough as well, this is
+    // taken into account.
     if (state.deferSeekedEvent && playbackRateIsPositive) {
       onSeeked();
     }
