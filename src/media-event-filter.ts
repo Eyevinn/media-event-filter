@@ -131,22 +131,9 @@ export const getMediaEventFilter = ({
   };
 
   const onCanPlayThrough = (): void => {
-    if (!state.loading) {
-      // Safari triggers "waiting" when muting a stream.
-      //
-      // This logic recovers from the Safari micro buffer triggered
-      // by a mute.
-      if (state.buffering && mediaElement.playbackRate > 0) {
-        state = {
-          ...state,
-          buffering: false,
-        };
-
-        callback(FilteredMediaEvent.BUFFERED);
-      }
-    }
-
     if (state.loading) {
+      // Block for handling initial media load
+
       // guard for when an engine sets playbackRate to 0 to continue buffering
       // recover in "ratechange" event
       if (mediaElement.playbackRate === 0) {
@@ -162,6 +149,21 @@ export const getMediaEventFilter = ({
         };
 
         callback(FilteredMediaEvent.LOADED);
+      }
+    } else {
+      // Block for handling behaviour after initial load
+
+      // Safari triggers "waiting" when muting a stream.
+      //
+      // This logic recovers from the Safari micro buffer triggered
+      // by a mute.
+      if (state.buffering && mediaElement.playbackRate > 0) {
+        state = {
+          ...state,
+          buffering: false,
+        };
+
+        callback(FilteredMediaEvent.BUFFERED);
       }
     }
   };
