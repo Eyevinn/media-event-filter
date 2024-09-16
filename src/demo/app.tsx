@@ -10,9 +10,6 @@ import {
 } from "./form-elements";
 import { Player } from "./player";
 
-const Select = styled.select``;
-const Option = styled.option``;
-
 type FormValues = {
   engine: "shaka" | "hlsjs" | "native";
   asset: string;
@@ -60,9 +57,12 @@ export const App = () => {
             // eslint-disable-next-line
             {...register(`asset`)}
           >
-            {["1", "2", "3"].map((engine) => (
-              <option key={engine} value={engine}>
-                {engine}
+            {[
+              "https://testcontent.eyevinn.technology/mp4/VINN.mp4",
+              "https://testcontent.eyevinn.technology/mp4/stswe-tvplus-promo.mp4",
+            ].map((src) => (
+              <option key={src} value={src}>
+                {src}
               </option>
             ))}
           </FormSelect>
@@ -73,7 +73,7 @@ export const App = () => {
         Selected engine: {engine} {asset}
       </div>
 
-      <Player />
+      <Player engine={engine} videoUrl={asset} />
     </>
   );
 };

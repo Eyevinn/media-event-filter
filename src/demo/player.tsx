@@ -5,10 +5,14 @@ import { useFilteredEvents } from "./filtered-events.hook";
 import { useRenderEvents } from "./render-events.hook";
 import { useControls } from "./controls.hook";
 
-export const Player = () => {
+export const Player = ({
+  engine,
+  videoUrl,
+}: {
+  engine?: string;
+  videoUrl?: string;
+}) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const videoUrl = "https://testcontent.eyevinn.technology/mp4/VINN.mp4";
 
   useNativeEvents({ videoRef });
   const { playing, seeking, buffering, events, blocked, loading } =
