@@ -82,7 +82,7 @@ export const App = () => {
             // eslint-disable-next-line
             {...register(`engine`)}
           >
-            {["shaka", "hlsjs", "native"].map((engine) => (
+            {["shaka", "hlsjs", "dashjs", "native"].map((engine) => (
               <option key={engine} value={engine}>
                 {engine}
               </option>

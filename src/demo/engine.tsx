@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import shaka from "shaka-player";
-import hlsjs from "hls.js";
+import hlsjs, { Events } from "hls.js";
+import { MediaPlayer, ErrorEvent } from "dashjs";
 
 export const useEngine = ({
   videoUrl,
@@ -26,6 +27,8 @@ export const useEngine = ({
         // catch errors during load
         .catch(console.error);
 
+      p.addEventListener("error", console.error);
+
       // Kill player when unmounted
       return () => p.destroy().catch(() => {});
     }
@@ -37,8 +40,19 @@ export const useEngine = ({
 
       p.attachMedia(video);
       p.loadSource(videoUrl);
+      p.on(Events.ERROR, console.error);
 
       // Kill player when unmounted
+      return () => p.destroy();
+    }
+
+    if (engine === "dashjs") {
+      const p = MediaPlayer().create();
+
+      p.initialize(video, videoUrl, true);
+
+      p.on("error", console.error);
+
       return () => p.destroy();
     }
 
