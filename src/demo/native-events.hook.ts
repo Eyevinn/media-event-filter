@@ -1,32 +1,22 @@
-import { RefObject, useEffect } from "react";
+import { useEffect } from "react";
 import { MediaEvent } from "../media-event-filter";
 
-export const useNativeEvents = ({
-  videoRef,
-}: {
-  videoRef: RefObject<HTMLVideoElement>;
-}) => {
+export const useNativeEvents = ({ video }: { video: HTMLVideoElement }) => {
   useEffect(() => {
-    if (!videoRef.current) return;
-
     const listeners: [MediaEvent, () => void][] = Object.values(MediaEvent)
       .map((evt) => {
-        if (!videoRef.current) return;
-
         const pair: [MediaEvent, () => void] = [
           evt,
           () => {
-            if (!videoRef.current) return;
-
             const mediaElState = {
-              networkState: videoRef.current.networkState,
-              readyState: videoRef.current.readyState,
-              paused: videoRef.current.paused,
-              ended: videoRef.current.ended,
-              error: videoRef.current.error,
-              currentTime: videoRef.current.currentTime,
-              duration: videoRef.current.duration,
-              seeking: videoRef.current.seeking,
+              networkState: video.networkState,
+              readyState: video.readyState,
+              paused: video.paused,
+              ended: video.ended,
+              error: video.error,
+              currentTime: video.currentTime,
+              duration: video.duration,
+              seeking: video.seeking,
             };
 
             console[evt === MediaEvent.timeupdate ? "debug" : "log"](
@@ -42,7 +32,7 @@ export const useNativeEvents = ({
           },
         ];
 
-        videoRef.current.addEventListener(evt, pair[1]);
+        video.addEventListener(evt, pair[1]);
 
         return pair;
       })
@@ -50,8 +40,8 @@ export const useNativeEvents = ({
 
     return () => {
       listeners.forEach(([evt, listener]) => {
-        videoRef.current?.removeEventListener(evt, listener);
+        video.removeEventListener(evt, listener);
       });
     };
-  }, [videoRef.current]);
+  }, [video]);
 };

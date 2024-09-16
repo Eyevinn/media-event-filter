@@ -1,24 +1,24 @@
-import { RefObject, useCallback } from "react";
+import { useCallback } from "react";
 
 export const useControls = ({
   playing,
-  videoRef,
+  video,
 }: {
   playing: boolean;
-  videoRef: RefObject<HTMLVideoElement>;
+  video: HTMLVideoElement;
 }) => {
   const playPause = useCallback(() => {
-    if (playing) videoRef.current?.pause();
-    if (!playing) videoRef.current?.play().catch(console.error);
-  }, [videoRef.current, playing]);
+    if (playing) video.pause();
+    if (!playing) video.play().catch(console.error);
+  }, [video, playing]);
 
   const skip = useCallback(
     (num: number) => {
-      if (!videoRef.current) return;
+      if (!video) return;
 
-      videoRef.current.currentTime = videoRef.current.currentTime + num;
+      video.currentTime = video.currentTime + num;
     },
-    [videoRef.current, playing],
+    [video, playing],
   );
 
   return {
