@@ -15,6 +15,40 @@ type FormValues = {
   asset: string;
 };
 
+const assets = [
+  ["MP4 1", "https://testcontent.eyevinn.technology/mp4/VINN.mp4"],
+  [
+    "MP4 2",
+    "https://testcontent.eyevinn.technology/mp4/stswe-tvplus-promo.mp4",
+  ],
+  [
+    "VOD DASH fMP4",
+    "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.mpd",
+  ],
+  [
+    "VOD HLS fMP4",
+    "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
+  ],
+  [
+    "HLS LIVE",
+    "https://demo.unified-streaming.com/k8s/live/stable/live.isml/.m3u8",
+  ],
+  [
+    "HLS LIVE TIMESHIFT 300s",
+    "https://demo.unified-streaming.com/k8s/live/stable/live.isml/.m3u8?time_shift=300",
+  ],
+  [
+    "DASH LIVE",
+    "https://demo.unified-streaming.com/k8s/live/stable/live.isml/.mpd",
+  ],
+  [
+    "DASH LIVE TIMESHIFT 300s",
+    "https://demo.unified-streaming.com/k8s/live/stable/live.isml/.mpd?time_shift=300",
+  ],
+  // ["", ""],
+  // ["", ""],
+];
+
 export const App = () => {
   const { register, control } = useForm<FormValues>({
     defaultValues: {
@@ -28,6 +62,7 @@ export const App = () => {
   });
 
   const { engine, asset } = useWatch<FormValues>({ control });
+
   return (
     <>
       <Global
@@ -56,21 +91,14 @@ export const App = () => {
             // eslint-disable-next-line
             {...register(`asset`)}
           >
-            {[
-              "https://testcontent.eyevinn.technology/mp4/VINN.mp4",
-              "https://testcontent.eyevinn.technology/mp4/stswe-tvplus-promo.mp4",
-            ].map((src) => (
+            {assets.map(([name, src]) => (
               <option key={src} value={src}>
-                {src}
+                {name}
               </option>
             ))}
           </FormSelect>
         </FormLabel>
       </FormContainer>
-
-      <div>
-        Selected engine: {engine} {asset}
-      </div>
 
       <Player engine={engine} videoUrl={asset} />
     </>
