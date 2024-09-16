@@ -4,7 +4,7 @@ const path = require("path");
 
 module.exports = merge(common, {
   mode: "development",
-  entry: ["./src/media-event-filter.ts"],
+  entry: ["./src/demo/demo.tsx"],
   devServer: {
     static: {
       directory: path.join(__dirname, "public"),

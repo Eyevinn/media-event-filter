@@ -3,6 +3,7 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "node",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
@@ -10,9 +11,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["dom", "es2015", "es2017"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "rootDir": "src",
-    "outDir": "build/types"
+    "outDir": "build/types",
+    "jsx": "react-jsx"
   },
   "exclude": ["**/build/", "**/node_modules/", "**/webpack.*"]
 }
