@@ -437,6 +437,8 @@ export const getMediaEventFilter = ({
   };
 
   const onEnded = (): void => {
+    if (isNotReady()) return;
+
     state = {
       ...state,
       ended: true,
