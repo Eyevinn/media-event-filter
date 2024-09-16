@@ -78,140 +78,14 @@
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="box">
-      <video preload="metadata" playsinline controls id="videoEl"></video>
-      <div class="box-2">
-        <button id="switch">Update src</button>
-        <button id="clear">Clear src</button>
-        <button id="load">Load</button>
-      </div>
-    </div>
-    <p>Check console for additional logging.</p>
-    <div class="box">
-      <div id="events"></div>
-    </div>
-  </div>
+  <div id="reactRoot"></div>
 
   <script type="module">
-    import {
-      getMediaEventFilter,
-      FilteredMediaEvent,
-      MediaEvent,
-    } from "./main.mjs";
+    import { Demo } from "./main.mjs";
+    const rootEl = document.getElementById("reactRoot");
 
-    const videos = [
-      "https://testcontent.eyevinn.technology/mp4/VINN.mp4",
-      "https://testcontent.eyevinn.technology/mp4/stswe-tvplus-promo.mp4",
-    ];
-
-    const mediaElement = document.getElementById("videoEl");
-    let i = 1;
-    let seekOrBufferTimestamp = 0;
-
-    mediaElement.src = videos[0];
-
-    Object.values(MediaEvent).forEach((evt) =>
-      mediaElement.addEventListener(evt, () => {
-        const mediaElementState = {
-          networkState: mediaElement.networkState,
-          readyState: mediaElement.readyState,
-          paused: mediaElement.paused,
-          ended: mediaElement.ended,
-          error: mediaElement.error,
-          currentTime: mediaElement.currentTime,
-          duration: mediaElement.duration,
-          seeking: mediaElement.seeking,
-        };
-
-        console[evt === MediaEvent.timeupdate ? "debug" : "log"](
-          "%cNativeEv: %s",
-          "color:#cf1313;font-weight:bold;",
-          evt,
-        );
-
-        console[evt === MediaEvent.timeupdate ? "debug" : "info"](
-          "Media Element State",
-          mediaElementState,
-        );
-      }),
-    );
-
-    getMediaEventFilter({
-      mediaElement,
-      callback: (evt) => {
-        if (evt === FilteredMediaEvent.TIME_UPDATE) {
-          console.debug(
-            "%cFiltered: %s",
-            "color:#267dff;font-weight:bold;",
-            evt,
-          );
-          return;
-        }
-
-        if (
-          [FilteredMediaEvent.BUFFERING, FilteredMediaEvent.SEEKING].includes(
-            evt,
-          )
-        ) {
-          seekOrBufferTimestamp = Date.now();
-        }
-
-        if (
-          [FilteredMediaEvent.BUFFERED, FilteredMediaEvent.SEEKED].includes(evt)
-        ) {
-          console.log(
-            "%cFiltered: %s",
-            "color:#267dff;font-weight:bold;",
-            `${evt} (${(Date.now() - seekOrBufferTimestamp) / 1000}s)`,
-          );
-          console.info("\n");
-        } else {
-          console.log("%cFiltered: %s", "color:#267dff;font-weight:bold;", evt);
-          console.info("\n");
-        }
-
-        const box = document.createElement("div");
-
-        box.classList.add("event");
-        box.innerText =
-          i +
-          ": " +
-          `${evt} ${
-            seekOrBufferTimestamp &&
-            [FilteredMediaEvent.BUFFERED, FilteredMediaEvent.SEEKED].includes(
-              evt,
-            )
-              ? `(${(Date.now() - seekOrBufferTimestamp) / 1000}s)`
-              : ""
-          }`;
-
-        i++;
-
-        const events = document.getElementById("events");
-
-        events.prepend(box);
-
-        if (events.childElementCount > 20) {
-          events.removeChild(events.lastChild);
-        }
-      },
+    Demo({
+      rootEl,
     });
-
-    const switchButton = document.getElementById("switch");
-    const clearButton = document.getElementById("clear");
-    const loadButton = document.getElementById("load");
-
-    switchButton.onclick = () => {
-      mediaElement.src = mediaElement.src !== videos[0] ? videos[0] : videos[1];
-    };
-
-    clearButton.onclick = () => {
-      mediaElement.src = "";
-    };
-
-    loadButton.onclick = () => {
-      mediaElement.load();
-    };
   </script>
 </body>
