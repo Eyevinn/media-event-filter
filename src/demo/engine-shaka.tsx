@@ -5,7 +5,7 @@ export const useShaka = ({
   videoUrl,
   videoRef,
 }: {
-  videoUrl: string;
+  videoUrl?: string;
   videoRef: RefObject<HTMLVideoElement>;
 }) => {
   useEffect(() => {
