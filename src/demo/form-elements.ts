@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const FormContainer = styled.form`
-  padding: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const sharedMargin = `margin: 0 0 2rem`;
