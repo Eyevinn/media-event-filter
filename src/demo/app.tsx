@@ -49,6 +49,10 @@ const assets = [
   // ["", ""],
 ];
 
+const Wrapper = styled.div`
+  margin: 1rem 1rem 0;
+`;
+
 export const App = () => {
   const { register, control } = useForm<FormValues>({
     defaultValues: {
@@ -64,7 +68,7 @@ export const App = () => {
   const { engine, asset } = useWatch<FormValues>({ control });
 
   return (
-    <>
+    <Wrapper>
       <Global
         styles={`
         ${resetStyles}
@@ -101,6 +105,6 @@ export const App = () => {
       </FormContainer>
 
       <Player engine={engine} videoUrl={asset} />
-    </>
+    </Wrapper>
   );
 };

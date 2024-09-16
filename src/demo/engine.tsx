@@ -12,13 +12,13 @@ export const useEngine = ({
   engine?: string;
 }) => {
   useEffect(() => {
-    if (!videoUrl) return () => {};
+    if (!videoUrl) return;
 
     if (engine === "shaka") {
       const p = new shaka.Player(video);
 
       // Add configuration if needed
-      // player.configure()
+      // p.configure();
 
       p
         // start loading the stream
@@ -27,17 +27,18 @@ export const useEngine = ({
         .catch(console.error);
 
       // Kill player when unmounted
-      return () => {
-        p.destroy().catch(() => {});
-      };
+      return () => p.destroy().catch(() => {});
     }
 
     if (engine === "hlsjs") {
-      const p = new hlsjs();
+      const p = new hlsjs({
+        // debug: true,
+      });
 
       p.attachMedia(video);
       p.loadSource(videoUrl);
 
+      // Kill player when unmounted
       return () => p.destroy();
     }
 

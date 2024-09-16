@@ -8,13 +8,19 @@ import { PlayerOptions } from "./types";
 import styled from "@emotion/styled";
 
 const PlayerWrapper = styled.div`
-  padding: 2rem;
+  margin-bottom: 1rem;
+`;
+
+const VideoWrapper = styled.div`
+  margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
 `;
 
 const Button = styled.button`
   color: #1a1a1a;
   padding: 0.2rem 1rem;
-  margin: 0 0.2rem 0 0.2rem;
+  margin-bottom: 0.2rem;
   border-radius: 0.2rem;
   font-size: 1.2rem;
   line-height: 1.8;
@@ -27,6 +33,29 @@ const Button = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+const EventsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 0 1rem 0;
+`;
+
+const Events = styled.div`
+  color: #1a1a1a;
+  padding: 0.2rem 1rem;
+  margin-bottom: 0.2rem;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  background: rgba(255, 198, 109, 1);
+`;
+
+const ControlsWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin: 0 0 1rem 0;
 `;
 
 export const Player = ({ videoUrl, engine }: PlayerOptions) => {
@@ -77,21 +106,26 @@ export const Player = ({ videoUrl, engine }: PlayerOptions) => {
 
   return (
     <PlayerWrapper>
-      <div ref={videoContainerRef} style={{ width: "100%", height: "auto" }} />
-      <Button type={"button"} onClick={playPause}>
-        {playing ? "Pause" : "Play"}
-      </Button>
-      <Button type={"button"} onClick={() => skip(-10)}>
-        Seek -10
-      </Button>
-      <Button type={"button"} onClick={() => skip(10)}>
-        Seek +10
-      </Button>
-      {renderEvents.map(({ seq, evt, dur }) => (
-        <div key={seq}>
-          {seq} {evt} {dur}
-        </div>
-      ))}
+      <VideoWrapper ref={videoContainerRef} />
+      <ControlsWrapper>
+        <Button type={"button"} onClick={playPause}>
+          {playing ? "Pause" : "Play"}
+        </Button>
+        <Button type={"button"} onClick={() => skip(-10)}>
+          Seek -10
+        </Button>
+        <Button type={"button"} onClick={() => skip(10)}>
+          Seek +10
+        </Button>
+      </ControlsWrapper>
+
+      <EventsWrapper>
+        {renderEvents.map(({ seq, evt, dur }) => (
+          <Events key={seq}>
+            {seq} {evt} {dur}
+          </Events>
+        ))}
+      </EventsWrapper>
     </PlayerWrapper>
   );
 };
