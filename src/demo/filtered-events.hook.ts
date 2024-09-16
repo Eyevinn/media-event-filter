@@ -1,11 +1,7 @@
 import { RefObject, useEffect, useState } from "react";
 import { FilteredMediaEvent, getMediaEventFilter } from "../media-event-filter";
 
-export const useFilteredEvents = ({
-  videoRef,
-}: {
-  videoRef: RefObject<HTMLVideoElement>;
-}) => {
+export const useFilteredEvents = ({ video }: { video: HTMLVideoElement }) => {
   const [playing, setPlaying] = useState(false);
   const [seeking, setSeeking] = useState(false);
   const [buffering, setBuffering] = useState(false);
@@ -16,14 +12,12 @@ export const useFilteredEvents = ({
   );
 
   useEffect(() => {
-    if (!videoRef.current) return;
-
     let seekOrBufferTimestamp = 0;
 
     const mef = getMediaEventFilter({
-      mediaElement: videoRef.current,
+      mediaElement: video,
       callback: (evt) => {
-        if (!videoRef.current) return;
+        if (!video) return;
 
         const now = Date.now();
 
@@ -32,7 +26,7 @@ export const useFilteredEvents = ({
             setLoading(false);
 
             // attempt autoplay
-            videoRef.current.play().catch((e) => {
+            video.play().catch((e) => {
               // catch autoplay block
               if (e.name.indexOf("NotAllowedError") > -1) {
                 setBlocked(true);
@@ -106,7 +100,7 @@ export const useFilteredEvents = ({
     return () => {
       mef.teardown();
     };
-  }, [videoRef.current]);
+  }, [video]);
 
   return {
     playing,
