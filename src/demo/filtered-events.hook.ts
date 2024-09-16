@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FilteredMediaEvent, getMediaEventFilter } from "../media-event-filter";
 
 export const useFilteredEvents = ({ video }: { video: HTMLVideoElement }) => {
@@ -10,6 +10,16 @@ export const useFilteredEvents = ({ video }: { video: HTMLVideoElement }) => {
   const [events, setEvents] = useState<{ e: FilteredMediaEvent; t: number }[]>(
     [],
   );
+
+  // reset state on new video element
+  useEffect(() => {
+    setPlaying(false);
+    setSeeking(false);
+    setBuffering(false);
+    setLoading(true);
+    setBlocked(false);
+    setEvents([]);
+  }, [video]);
 
   useEffect(() => {
     let seekOrBufferTimestamp = 0;

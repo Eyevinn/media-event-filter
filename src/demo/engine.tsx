@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import shaka from "shaka-player";
+import hlsjs from "hls.js";
 
 export const useEngine = ({
   videoUrl,
@@ -14,27 +15,30 @@ export const useEngine = ({
     if (!videoUrl) return () => {};
 
     if (engine === "shaka") {
-      const player = new shaka.Player(video);
+      const p = new shaka.Player(video);
 
       // Add configuration if needed
       // player.configure()
 
-      player
+      p
         // start loading the stream
         .load(videoUrl)
-        .then(() => {
-          video.play();
-        })
         // catch errors during load
         .catch(console.error);
 
       // Kill player when unmounted
       return () => {
-        player.destroy().catch(() => {});
+        p.destroy().catch(() => {});
       };
     }
 
     if (engine === "hlsjs") {
+      const p = new hlsjs();
+
+      p.attachMedia(video);
+      p.loadSource(videoUrl);
+
+      return () => p.destroy();
     }
 
     if (engine === "native") {

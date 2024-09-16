@@ -5,6 +5,29 @@ import { useFilteredEvents } from "./filtered-events.hook";
 import { useRenderEvents } from "./render-events.hook";
 import { useControls } from "./controls.hook";
 import { PlayerOptions } from "./types";
+import styled from "@emotion/styled";
+
+const PlayerWrapper = styled.div`
+  padding: 2rem;
+`;
+
+const Button = styled.button`
+  color: #1a1a1a;
+  padding: 0.2rem 1rem;
+  margin: 0 0.2rem 0 0.2rem;
+  border-radius: 0.2rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  background: rgba(255, 198, 109, 1);
+  border: 2px solid rgb(173, 131, 68);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
 
 export const Player = ({ videoUrl, engine }: PlayerOptions) => {
   const videoContainerRef = useRef<HTMLDivElement>(null);
@@ -53,22 +76,22 @@ export const Player = ({ videoUrl, engine }: PlayerOptions) => {
   });
 
   return (
-    <div>
+    <PlayerWrapper>
       <div ref={videoContainerRef} style={{ width: "100%", height: "auto" }} />
-      <button type={"button"} onClick={playPause}>
+      <Button type={"button"} onClick={playPause}>
         {playing ? "Pause" : "Play"}
-      </button>
-      <button type={"button"} onClick={() => skip(-10)}>
+      </Button>
+      <Button type={"button"} onClick={() => skip(-10)}>
         Seek -10
-      </button>
-      <button type={"button"} onClick={() => skip(10)}>
+      </Button>
+      <Button type={"button"} onClick={() => skip(10)}>
         Seek +10
-      </button>
+      </Button>
       {renderEvents.map(({ seq, evt, dur }) => (
         <div key={seq}>
           {seq} {evt} {dur}
         </div>
       ))}
-    </div>
+    </PlayerWrapper>
   );
 };
