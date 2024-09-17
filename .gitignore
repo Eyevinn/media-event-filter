@@ -3,7 +3,7 @@ yarn-error.log
 build
 dist
 .yarnrc.yml
-
+.swc/
 
 .pnp.*
 .yarn/*
