@@ -7,23 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.cache/yarn
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.11.x"
+          node-version: "20.17.x"
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4.0.0
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: pnpm install
       - name: Run Build Command
-        run: yarn build
+        run: pnpm build

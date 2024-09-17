@@ -23,7 +23,7 @@
     "build": "webpack --config webpack.prod.cjs && tsc -p tsconfig.json --emitDeclarationOnly",
     "pretty": "prettier --write .",
     "release": "semantic-release",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
     "@emotion/react": "11.13.3",
@@ -51,8 +51,8 @@
     "webpack": "5.93.0",
     "webpack-bundle-analyzer": "4.10.2",
     "webpack-cli": "5.1.4",
-    "webpack-dev-server": "^5.0.2",
+    "webpack-dev-server": "5.0.2",
     "webpack-merge": "5.10.0"
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "pnpm@9.7.1"
 }
