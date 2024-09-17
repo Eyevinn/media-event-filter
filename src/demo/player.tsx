@@ -73,6 +73,11 @@ export const Player = ({ videoUrl, engine }: PlayerOptions) => {
     return v;
   }, [videoUrl, engine]);
 
+  useEffect(() => {
+    // @ts-ignore
+    window.v = video;
+  }, [video]);
+
   // insert video in container
   useEffect(() => {
     if (!videoContainerRef.current) return;
