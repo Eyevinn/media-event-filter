@@ -215,15 +215,15 @@ export const getMediaEventFilter = ({
       return;
     }
 
-    state = {
-      ...state,
-      seeking: false,
-      deferSeekedEvent: false,
-    };
-
     // if seeking within buffer, allow seeked to trigger
     // otherwise wait for canplaythrough.
     if (mediaElement.readyState === HTMLMediaElement.HAVE_ENOUGH_DATA) {
+      state = {
+        ...state,
+        seeking: false,
+        deferSeekedEvent: false,
+      };
+
       callback(FilteredMediaEvent.SEEKED);
     }
   };
