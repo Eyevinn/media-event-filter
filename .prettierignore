@@ -3,3 +3,4 @@
 node_modules
 .github
 CHANGELOG.md
+pnpm-lock.yaml
