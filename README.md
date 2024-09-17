@@ -397,7 +397,7 @@ For automated release notes to work well, try to describe what was added or chan
 
 ### Develop
 
-To start a dev server: `yarn dev`, check `public/index.html` for details.
+To start a dev server: `pnpm dev`, check `demo` and `public/index.html` for details.
 
 Familiarity with the HTML5 video standard, shaka, hlsjs, or other engines
 is recommended before contributing.
@@ -422,7 +422,7 @@ Tested on OSX, Windows, Linux
 
 Releases are triggered via a github action that will automatically increment the version and write a changelog based on commits.
 
-Manual releases can be made by running `yarn release`.
+Manual releases can be made by running `pnpm release`.
 
 # Support
 

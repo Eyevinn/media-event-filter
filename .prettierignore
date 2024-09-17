@@ -1,7 +1,5 @@
 **/dist*
 **/build*
 node_modules
-.yarn
 .github
-.pnp.*
 CHANGELOG.md
