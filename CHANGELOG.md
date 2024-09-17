@@ -1,3 +1,18 @@
+# [3.2.0](https://github.com/Eyevinn/media-event-filter/compare/v3.1.0...v3.2.0) (2024-09-17)
+
+
+### Bug Fixes
+
+* correctly reset deferred seeked ([349ebd0](https://github.com/Eyevinn/media-event-filter/commit/349ebd0b47e9c1ae25edc48cadf22b03c99ba109))
+
+
+### Features
+
+* add heuristics for deferring played during seek/buffer ([9132248](https://github.com/Eyevinn/media-event-filter/commit/9132248a753fc002ad17cd5974fc70b8fa521d5e))
+* move buffer recovery detection to canplaythrough ([858abc7](https://github.com/Eyevinn/media-event-filter/commit/858abc72e186629dcbe1ac4ac7bb012dc8ebd4eb))
+* prevent multiple ended events if seeking while ended ([6cc5b24](https://github.com/Eyevinn/media-event-filter/commit/6cc5b245e20cfd0732562a58519efea35a99112a))
+* seeked should only trigger with readyState 4 ([800f75b](https://github.com/Eyevinn/media-event-filter/commit/800f75bac1a806234cec5a3829ccc377d5b94ca8))
+
 # [3.1.0](https://github.com/Eyevinn/media-event-filter/compare/v3.0.0...v3.1.0) (2024-09-12)
 
 
