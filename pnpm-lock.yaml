@@ -60,8 +60,8 @@ importers:
         specifier: '24'
         version: 24.1.1(typescript@5.6.2)
       shaka-player:
-        specifier: 4.11.2
-        version: 4.11.2
+        specifier: 4.11.3
+        version: 4.11.3
       swc-loader:
         specifier: 0.2.6
         version: 0.2.6(@swc/core@1.7.26)(webpack@5.93.0(@swc/core@1.7.26)(webpack-cli@5.1.4))
@@ -2368,8 +2368,9 @@ packages:
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
 
-  shaka-player@4.11.2:
-    resolution: {integrity: sha512-KhmEVHlxPn0XPY8uYd/83OVWCJoMZ6kgvZezPOu/HzTQJIh2DGarYMfWM1d9Mlz8WETP+c81W4GjawLR3strzQ==}
+  shaka-player@4.11.3:
+    resolution: {integrity: sha512-+DRSPWPf6mk/z0R8PEYStY58DghtQdOkdNKUVdhigctjyPxgeUGXHhMwUWGB56QVZEBF212Js/V1VJzZ4Ka74g==}
+    engines: {node: '>=14'}
 
   shallow-clone@3.0.1:
     resolution: {integrity: sha512-/6KqX+GVUdqPuPPd2LxDDxzX6CAbjJehAAOKlNpqqUpAqPM6HeL8f+o3a+JsyGjn2lv0WY8UsTgUJjU9Ok55NA==}
@@ -5195,7 +5196,7 @@ snapshots:
 
   setprototypeof@1.2.0: {}
 
-  shaka-player@4.11.2:
+  shaka-player@4.11.3:
     dependencies:
       eme-encryption-scheme-polyfill: 2.1.5
 
