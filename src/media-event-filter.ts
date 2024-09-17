@@ -169,6 +169,10 @@ export const getMediaEventFilter = ({
         };
 
         callback(FilteredMediaEvent.BUFFERED);
+
+        if (state.deferPlayingEvent) {
+          onPlaying();
+        }
       } else if (state.seeking) {
         state = {
           ...state,
@@ -177,6 +181,10 @@ export const getMediaEventFilter = ({
         };
 
         callback(FilteredMediaEvent.SEEKED);
+
+        if (state.deferPlayingEvent) {
+          onPlaying();
+        }
       }
     }
   };
@@ -225,6 +233,10 @@ export const getMediaEventFilter = ({
       };
 
       callback(FilteredMediaEvent.SEEKED);
+
+      if (state.deferPlayingEvent) {
+        onPlaying();
+      }
     }
   };
 
@@ -289,7 +301,18 @@ export const getMediaEventFilter = ({
 
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
-    if (mediaElement.playbackRate === 0) {
+    // and defer valid playing events occurring during seeking or buffering
+    // recover in seeked / canplaythrough event
+    if (
+      mediaElement.playbackRate === 0 ||
+      // For a playing event to be valid the video must first have
+      // been paused and a play request must have been made. Playing
+      // should not trigger during seeks or buffer, therefore we defer
+      // it.
+      (state.paused &&
+        state.playRequested &&
+        (state.seeking || state.buffering))
+    ) {
       state = {
         ...state,
         deferPlayingEvent: true,
