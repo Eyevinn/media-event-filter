@@ -225,7 +225,7 @@ export const getMediaEventFilter = ({
 
     // if seeking within buffer, allow seeked to trigger
     // otherwise wait for canplaythrough.
-    if (mediaElement.readyState === HTMLMediaElement.HAVE_ENOUGH_DATA) {
+    if (mediaElement.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
       state = {
         ...state,
         seeking: false,
@@ -293,12 +293,6 @@ export const getMediaEventFilter = ({
   };
 
   const onPlaying = (): void => {
-    // in case of buffering and seeking native "playing" event
-    // triggers when readyState is 3 and, in some browsers,
-    // whenever it seems to feel like. We cannot trust it to
-    // indicate when buffering or seeking has finished.
-    // see "canplaythrough" handling.
-
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
     // and defer valid playing events occurring during seeking or buffering
@@ -489,7 +483,7 @@ export const getMediaEventFilter = ({
       // Playhead changed while not paused and buffering is ongoing
       // which could indicate resumed playback. Check readyState
       // to confirm
-      mediaElement.readyState === HTMLMediaElement.HAVE_ENOUGH_DATA &&
+      mediaElement.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA &&
       // Ensure Shaka isn't performing internal buffering
       mediaElement.playbackRate !== 0
     ) {
