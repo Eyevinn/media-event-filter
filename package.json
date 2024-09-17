@@ -53,5 +53,5 @@
     "webpack-dev-server": "^5.0.2",
     "webpack-merge": "5.10.0"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.5.0"
 }
