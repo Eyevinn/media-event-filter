@@ -1,3 +1,12 @@
+# [3.3.0](https://github.com/Eyevinn/media-event-filter/compare/v3.2.0...v3.3.0) (2024-09-18)
+
+
+### Features
+
+* end seeking and buffering more aggressively ([f8e97c9](https://github.com/Eyevinn/media-event-filter/commit/f8e97c9c9fc885aaf71bde6db48fe4f06cba0cbf))
+* move buffer and seek handling to canplay ([38d9574](https://github.com/Eyevinn/media-event-filter/commit/38d957456b2c4c22870a20bb809abcda07fbfd45))
+* set `playsinline` on the video element ([ebc42da](https://github.com/Eyevinn/media-event-filter/commit/ebc42da28f4d201b9644d6752493d9ba5717faee))
+
 # [3.2.0](https://github.com/Eyevinn/media-event-filter/compare/v3.1.0...v3.2.0) (2024-09-17)
 
 
