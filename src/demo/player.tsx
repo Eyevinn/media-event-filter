@@ -70,6 +70,8 @@ export const Player = ({ videoUrl, engine }: PlayerOptions) => {
     v.style.width = "100%";
     v.style.height = "auto";
 
+    v.playsInline = true;
+
     return v;
   }, [videoUrl, engine]);
 
