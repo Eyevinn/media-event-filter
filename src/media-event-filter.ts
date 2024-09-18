@@ -65,6 +65,7 @@ type TPlaybackState = {
   paused: boolean;
   ended: boolean;
   initialPlayFired: boolean;
+  deferCanPlay: boolean;
   deferCanPlayThroughHandling: boolean;
   deferPlayingEvent: boolean;
   deferSeekedEvent: boolean;
@@ -88,6 +89,7 @@ const initialState: Record<keyof TPlaybackState, boolean> = {
   // to 0 in order to buffer. "playing"/"loading"/"seeking" can trigger
   // while playbackRate is 0, in this case we defer the event until
   // playbackRate returns to a positive value.
+  deferCanPlay: false,
   deferCanPlayThroughHandling: false,
   deferPlayingEvent: false,
   deferSeekedEvent: false,
@@ -130,6 +132,55 @@ export const getMediaEventFilter = ({
     reset();
   };
 
+  const onCanPlay = (): void => {
+    if (isNotReady()) return;
+
+    // guard for when an engine sets playbackRate to 0 to continue buffering
+    // recover in "ratechange" event
+    if (mediaElement.playbackRate === 0) {
+      state = {
+        ...state,
+        deferCanPlay: true,
+      };
+
+      return;
+    }
+
+    state = {
+      ...state,
+      deferCanPlay: false,
+    };
+
+    // block for handling behaviour after initial load,
+    // like buffer and seek recovery
+    clearRatechangeBufferTimeout();
+
+    if (state.buffering) {
+      state = {
+        ...state,
+        buffering: false,
+      };
+
+      callback(FilteredMediaEvent.BUFFERED);
+
+      if (state.deferPlayingEvent) {
+        onPlaying();
+      }
+    } else if (state.seeking) {
+      state = {
+        ...state,
+        seeking: false,
+        deferSeekedEvent: false,
+      };
+
+      callback(FilteredMediaEvent.SEEKED);
+
+      if (state.deferPlayingEvent) {
+        onPlaying();
+      }
+    }
+  };
+
   const onCanPlayThrough = (): void => {
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
@@ -152,40 +203,6 @@ export const getMediaEventFilter = ({
       };
 
       callback(FilteredMediaEvent.LOADED);
-    } else {
-      // block for handling behaviour after initial load,
-      // like buffer and seek recovery
-      clearRatechangeBufferTimeout();
-
-      state = {
-        ...state,
-        deferCanPlayThroughHandling: false,
-      };
-
-      if (state.buffering) {
-        state = {
-          ...state,
-          buffering: false,
-        };
-
-        callback(FilteredMediaEvent.BUFFERED);
-
-        if (state.deferPlayingEvent) {
-          onPlaying();
-        }
-      } else if (state.seeking) {
-        state = {
-          ...state,
-          seeking: false,
-          deferSeekedEvent: false,
-        };
-
-        callback(FilteredMediaEvent.SEEKED);
-
-        if (state.deferPlayingEvent) {
-          onPlaying();
-        }
-      }
     }
   };
 
@@ -224,7 +241,7 @@ export const getMediaEventFilter = ({
     }
 
     // if seeking within buffer, allow seeked to trigger
-    // otherwise wait for canplaythrough.
+    // otherwise wait for canplay.
     if (mediaElement.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
       state = {
         ...state,
@@ -296,7 +313,7 @@ export const getMediaEventFilter = ({
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
     // and defer valid playing events occurring during seeking or buffering
-    // recover in seeked / canplaythrough event
+    // recover in seeked / canplay event
     if (
       mediaElement.playbackRate === 0 ||
       // For a playing event to be valid the video must first have
@@ -412,9 +429,14 @@ export const getMediaEventFilter = ({
       onCanPlayThrough();
     }
 
+    // the engine kept buffering after "canplay" event, recover
+    if (state.deferCanPlay && playbackRateIsPositive) {
+      onCanPlay();
+    }
+
     // the engine kept buffering after "seeked" event, recover
     //
-    // seeked is triggered by onCanPlayThrough as well, this is
+    // seeked is triggered by onCanPlay as well, this is
     // taken into account.
     if (state.deferSeekedEvent && playbackRateIsPositive) {
       onSeeked();
@@ -499,6 +521,7 @@ export const getMediaEventFilter = ({
   };
 
   const EventHandlerPairs: Array<[MediaEvent, TCallback]> = [
+    [MediaEvent.canplay, onCanPlay],
     [MediaEvent.canplaythrough, onCanPlayThrough],
     [MediaEvent.playing, onPlaying],
     [MediaEvent.waiting, onWaiting],
