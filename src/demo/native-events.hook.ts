@@ -17,6 +17,7 @@ export const useNativeEvents = ({ video }: { video: HTMLVideoElement }) => {
               currentTime: video.currentTime,
               duration: video.duration,
               seeking: video.seeking,
+              playbackRate: video.playbackRate,
             };
 
             console[evt === MediaEvent.timeupdate ? "debug" : "log"](
