@@ -27,6 +27,9 @@ type TFilteredMediaEventCallback = (event: FilteredMediaEvent) => void;
 type TMediaEventFilterOptions = {
   mediaElement: HTMLMediaElement;
   callback: TFilteredMediaEventCallback;
+  // Should be set to `true` when playing MP4 files
+  // as the video element CAN stop buffering when readyState is 3 rather than 4.
+  mp4Mode: boolean;
 };
 
 type TCallback = () => void;
@@ -103,6 +106,7 @@ export type TMediaEventFilter = {
 export const getMediaEventFilter = ({
   mediaElement,
   callback,
+  mp4Mode = false,
 }: TMediaEventFilterOptions): TMediaEventFilter => {
   let ratechangeBufferTimeout: number | null = null;
 
@@ -133,8 +137,13 @@ export const getMediaEventFilter = ({
   };
 
   const onCanPlay = (): void => {
-    if (isNotReady()) return;
+    if (isNotReady()) {
+      if (mp4Mode) {
+        onCanPlayThrough();
+      }
 
+      return;
+    }
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event
     if (mediaElement.playbackRate === 0) {
@@ -183,8 +192,9 @@ export const getMediaEventFilter = ({
 
   const onCanPlayThrough = (): void => {
     // guard for when an engine sets playbackRate to 0 to continue buffering
-    // recover in "ratechange" event
-    if (mediaElement.playbackRate === 0) {
+    // recover in "ratechange" event.
+    // Not used in mp4Mode as the engine doesn't update playbackRate with mp4s
+    if (!mp4Mode && mediaElement.playbackRate === 0) {
       state = {
         ...state,
         deferCanPlayThroughHandling: true,

@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { FilteredMediaEvent, getMediaEventFilter } from "../media-event-filter";
 
-export const useFilteredEvents = ({ video }: { video: HTMLVideoElement }) => {
+export const useFilteredEvents = ({
+  video,
+  mp4Mode = false,
+}: {
+  video: HTMLVideoElement;
+  mp4Mode: boolean;
+}) => {
   const [playing, setPlaying] = useState(false);
   const [seeking, setSeeking] = useState(false);
   const [buffering, setBuffering] = useState(false);
@@ -25,6 +31,7 @@ export const useFilteredEvents = ({ video }: { video: HTMLVideoElement }) => {
     let seekOrBufferTimestamp = 0;
 
     const mef = getMediaEventFilter({
+      mp4Mode,
       mediaElement: video,
       callback: (evt) => {
         if (!video) return;
@@ -110,7 +117,7 @@ export const useFilteredEvents = ({ video }: { video: HTMLVideoElement }) => {
     return () => {
       mef.teardown();
     };
-  }, [video]);
+  }, [video, mp4Mode]);
 
   return {
     playing,

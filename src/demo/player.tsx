@@ -96,7 +96,7 @@ export const Player = ({ videoUrl, engine }: PlayerOptions) => {
   useNativeEvents({ video });
 
   const { playing, seeking, buffering, events, blocked, loading } =
-    useFilteredEvents({ video });
+    useFilteredEvents({ video, mp4Mode: videoUrl?.includes(".mp4") ?? false });
 
   const renderEvents = useRenderEvents(events);
 
