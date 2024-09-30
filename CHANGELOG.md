@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/Eyevinn/media-event-filter/compare/v3.3.0...v3.4.0) (2024-09-30)
+
+
+### Features
+
+* mp4 mode handling ([4d65757](https://github.com/Eyevinn/media-event-filter/commit/4d65757368d5371461ba52987a70d70b37b52c8a))
+
 # [3.3.0](https://github.com/Eyevinn/media-event-filter/compare/v3.2.0...v3.3.0) (2024-09-18)
 
 
