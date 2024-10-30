@@ -194,7 +194,7 @@ export const getMediaEventFilter = ({
     // guard for when an engine sets playbackRate to 0 to continue buffering
     // recover in "ratechange" event.
     // Not used in mp4Mode as the engine doesn't update playbackRate with mp4s
-    if (!mp4Mode && mediaElement.playbackRate === 0) {
+    if (!mp4Mode && state.loading && mediaElement.playbackRate === 0) {
       state = {
         ...state,
         deferCanPlayThroughHandling: true,
@@ -390,30 +390,15 @@ export const getMediaEventFilter = ({
     // Safari autoplay block triggers with a deferred loaded event,
     // recover to a paused state
     if (state.deferCanPlayThroughHandling) {
-      state = {
-        ...state,
-        loading: false,
-        deferCanPlayThroughHandling: false,
-      };
-
-      callback(FilteredMediaEvent.LOADED);
-
-      if (mediaElement.paused) {
-        state = {
-          ...state,
-          paused: true,
-        };
-
-        callback(FilteredMediaEvent.PAUSE);
-      }
-    } else {
-      state = {
-        ...state,
-        paused: true,
-      };
-
-      callback(FilteredMediaEvent.PAUSE);
+      onCanPlayThrough();
     }
+
+    state = {
+      ...state,
+      paused: true,
+    };
+
+    callback(FilteredMediaEvent.PAUSE);
   };
 
   const shouldTriggerRatechangeBuffer = () =>
