@@ -1,6 +1,6 @@
 {
   "name": "@eyevinn/media-event-filter",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "files": [
     "build",
     "CHANGELOG.md",

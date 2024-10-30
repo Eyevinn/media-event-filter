@@ -1,3 +1,10 @@
+## [3.4.1](https://github.com/Eyevinn/media-event-filter/compare/v3.4.0...v3.4.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* loaded triggered after seek and then pause ([8e187e1](https://github.com/Eyevinn/media-event-filter/commit/8e187e11e778438274b59591186e4327cfae28f8))
+
 # [3.4.0](https://github.com/Eyevinn/media-event-filter/compare/v3.3.0...v3.4.0) (2024-09-30)
 
 
