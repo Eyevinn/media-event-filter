@@ -1,16 +1,16 @@
 # Media Event Filter
 
-A dependecy free package providing [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) event interpretation: a single source of truth for UI state and KPI tracking, equal across all web platforms.
+A dependecy free package, providing [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) event interpretation: a single source of truth for UI state and KPI tracking, equal across web platforms.
 
-Works in all modern browsers, including web environments like Chromecast, and Smart TVs (LG, Samsung). 
+Works in modern browsers, including environments like Chromecast and Smart TV (LG, Samsung).
 
-Works together with popular player engines, like [shaka](https://github.com/shaka-project/shaka-player), [hls.js](https://github.com/video-dev/hls.js/), [dash.js](https://github.com/Dash-Industry-Forum/dash.js), and native MSE video playback.
+Works together with popular player engines: [shaka](https://github.com/shaka-project/shaka-player), [hls.js](https://github.com/video-dev/hls.js/), [dash.js](https://github.com/Dash-Industry-Forum/dash.js), and native MSE video playback.
 
 ## Why
 
-Make UI video playback state and KPI tracking easy. 
+Make video playback UI state and KPI tracking easy. 
 
-The HTML5 video element does not produce a consistent set of events that correspond to the updates required by trackers and user interfaces, like `loaded`, `buffering` or `seeking`. Different browsers, browser versions, and player engines will make the video element behave differently. Events are often emitted in an unpredictable manner regardless of what the specification says, in various edge cases. The media-event-filter wraps these differences, and provides an easy to consume API.
+The HTML5 video element does not produce a consistent set of events that correspond to the updates required by trackers and user interfaces, like `loaded`, `buffering` or `seeking`. The video element behaves differently across browsers, browser versions, and player engines. Events are often emitted in an unpredictable manner, regardless of what the specification says. The media-event-filter wraps these differences, and provides an API that is easy to consume.
 
 Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevinn/player-analytics-specification).
 
