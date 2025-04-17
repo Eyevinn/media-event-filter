@@ -23,6 +23,7 @@ Adheres to the [Eyevinn Player Analytics Specification](https://github.com/Eyevi
 /** A seek has started */
 "seeking";
 /** A seek has ended  */
+/** (Even though Seek is an irregular verb, we use seeked as this is common programming convention.)
 "seeked";
 /** Buffering has started */
 /** Does not trigger during seek, cancelled by a seek */
