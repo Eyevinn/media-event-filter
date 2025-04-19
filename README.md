@@ -347,8 +347,6 @@ Can not trigger before loaded.
 
 The player has reached the end of a stream.
 
-To allow restarting the stream after the end of stream has been reached set `allowResumeAfterEnded` to `true`.
-
 ## Contributing
 
 Contributions to improve compatibility with or add support for different engines, tracking solutions, and browsers are welcome.
